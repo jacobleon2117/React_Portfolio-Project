@@ -143,8 +143,6 @@ useEffect(() => {
 }, [prevScrollPos]);
 ```
 
-\_For more examples and usage, please refer to the Documentation
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
