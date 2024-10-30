@@ -6,7 +6,7 @@
 
 Hello! I'm **Jacob Leon**, a dedicated software developer with a strong passion for building user-friendly and efficient web applications. My journey in software development began with a fascination for coding and a desire to create impactful digital experiences. I specialize in full-stack development, with a focus on using modern technologies to solve real-world problems.
 
-- [LinkedIn](https://www.linkedin.com/jacobleon02)
+- [LinkedIn](https://www.linkedin.com/in/jacobleon02)
 - [Portfolio Project Repository](https://github.com/jacobleon2117/React_Portfolio-Project)
 
 ## Project Description
