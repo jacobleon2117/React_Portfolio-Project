@@ -100,14 +100,17 @@ Here are some key features and their implementations:
 
 ### Theme Switching
 
-    ```jsx
-    const [theme, setTheme] = useState('light');
+```jsx
+const [theme, setTheme] = useState("light");
 
-    const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-theme', theme === 'light' ? 'dark' : 'light');
-    };
-    ```
+const toggleTheme = () => {
+  setTheme(theme === "light" ? "dark" : "light");
+  document.documentElement.setAttribute(
+    "data-theme",
+    theme === "light" ? "dark" : "light"
+  );
+};
+```
 
 ### Particle Background
 
