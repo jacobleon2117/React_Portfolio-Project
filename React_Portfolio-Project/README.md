@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/jacobleon2117/React_Portfolio-Project">
-    <img src="public/images/portfolio-picture.png" alt="Logo" width="100%">
+    <img src="public/images/portfolio-picture.png" alt="Logo" width="1200">
   </a>
 
 <h3 align="center">Modern React Portfolio</h3>
