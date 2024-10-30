@@ -1,6 +1,6 @@
 <a id="readme-top"></a>
 
-<h3 align="left">Modern React Portfolio</h3>
+<h1 align="left">Modern React Portfolio</h1>
 
 <br />
 <div align="Left">
