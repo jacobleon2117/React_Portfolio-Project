@@ -1,12 +1,5 @@
 <a id="readme-top"></a>
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
 <br />
 <div align="center">
   <a href="https://github.com/jacobleon2117/React_Portfolio-Project">
@@ -150,3 +143,8 @@ useEffect(() => {
 \_For more examples and usage, please refer to the Documentation
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
