@@ -1,13 +1,12 @@
 <a id="readme-top"></a>
 
+<h3 align="left">Modern React Portfolio</h3>
+
 <br />
-<div align="center">
+<div align="Left">
   <a href="https://github.com/jacobleon2117/React_Portfolio-Project">
     <img src="public/images/portfolio-picture.png" alt="Logo" width="1200">
   </a>
-
-<h3 align="center">Modern React Portfolio</h3>
-
   <p align="center">
     A modern, responsive portfolio website built with React, featuring dynamic themes, particle effects, and smooth animations
     <br />
