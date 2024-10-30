@@ -1,3 +1,4 @@
+// We keep React import since we need cloneElement
 import React from 'react';
 import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaFigma } from 'react-icons/fa';
 import { SiExpress, SiJavascript, SiTypescript, SiTailwindcss, SiBootstrap } from 'react-icons/si';
@@ -68,11 +69,11 @@ const technologies = [
 
 const TechSection = () => {
   return (
-    <section id='tech' className={styles.section}>
+    <section id="tech" className={styles.section}>
       <div className={styles.container}>
         <h1 className={styles.title}>Current technologies</h1>
         <p className={styles.subtitle}>
-          I'm proficient in a range of modern technologies that empower me to build highly functional solutions.
+          I&apos;m proficient in a range of modern technologies that empower me to build highly functional solutions.
           These are some of my main technologies.
         </p>
         <div className={styles.techGrid}>
@@ -85,7 +86,7 @@ const TechSection = () => {
                   color: tech.color
                 }}
               >
-              {React.cloneElement(tech.icon, { size: 28 })}
+                {React.cloneElement(tech.icon, { size: 28 })}
               </div>
               <div className={styles.textContainer}>
                 <span className={styles.techName}>{tech.name}</span>

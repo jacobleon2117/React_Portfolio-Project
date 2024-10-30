@@ -20,7 +20,7 @@ const HeroSection = () => {
         <div className={styles.contentWrapper}>
           <div className={styles.imageContainer}>
             <img
-              src="/images/headshot.jpg"
+              src="./images/headshot.jpg"
               alt="Jacob Leon"
               className={styles.headshot}
             />
@@ -28,7 +28,7 @@ const HeroSection = () => {
           <div className={styles.textContent}>
             <div className={styles.alignedContent}>
               <h1 className={styles.title}>
-                Hey, I'm Jacob Leon
+                Hey, I&apos;m Jacob Leon
               </h1>
               <div className={styles.bottomContent}>
                 <div className={styles.roleContainer}>

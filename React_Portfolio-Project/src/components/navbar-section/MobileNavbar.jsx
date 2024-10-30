@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import styles from './NavbarSection.module.css';
 
@@ -53,6 +54,13 @@ const MobileNavbar = ({ isOpen, onClose, theme, onThemeToggle }) => {
       </div>
     </div>
   );
+};
+
+MobileNavbar.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  theme: PropTypes.oneOf(['light', 'dark']).isRequired,
+  onThemeToggle: PropTypes.func.isRequired
 };
 
 export default MobileNavbar;

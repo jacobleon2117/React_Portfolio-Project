@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaReact, FaNodeJs, FaExpandAlt, FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { SiMongodb, SiExpress, SiTypescript, SiNextdotjs, SiTailwindcss, 
          SiSupabase, SiD3Dotjs, SiPostgresql, SiVuedotjs, SiFirebase } from 'react-icons/si';
@@ -39,6 +38,7 @@ const getTechIcon = (tech) => {
 
 const projects = [
   {
+    id: 1, // Added IDs for better key management
     title: 'Project One',
     description: 'A full-stack web application built with React, Node.js, and MongoDB.',
     technologies: ['React', 'Node.js', 'MongoDB', 'Express'],
@@ -48,6 +48,7 @@ const projects = [
     hasImage: true
   },
   {
+    id: 2,
     title: 'Project Two',
     description: 'Modern e-commerce platform with real-time inventory management.',
     technologies: ['TypeScript', 'Next.js', 'Tailwind CSS', 'Supabase'],
@@ -56,6 +57,7 @@ const projects = [
     hasImage: false
   },
   {
+    id: 3,
     title: 'Project Three',
     description: 'Interactive dashboard with data visualization and analytics.',
     technologies: ['React', 'D3.js', 'Node.js', 'PostgreSQL'],
@@ -64,6 +66,7 @@ const projects = [
     hasImage: false
   },
   {
+    id: 4,
     title: 'Project Four',
     description: 'A comprehensive project management system with task tracking and team collaboration features.',
     technologies: ['Vue.js', 'Firebase', 'Tailwind CSS', 'Express'],
@@ -84,9 +87,9 @@ const ProjectSection = () => {
         </p>
 
         <div className={styles.projectGrid}>
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <div 
-              key={project.title} 
+              key={project.id} 
               className={`${styles.projectCard} ${
                 project.hasImage ? styles.hasImage : styles.noImage
               }`}
