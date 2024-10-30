@@ -45,7 +45,7 @@ const HeroSection = () => {
                 </div>
                 <div className={styles.socialLinks}>
                   <a
-                    href="https://github.com/yourusername"
+                    href="https://github.com/jacobleon2117"
                     className={styles.socialIcon}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -53,7 +53,7 @@ const HeroSection = () => {
                     <FaGithub size={24} />
                   </a>
                   <a
-                    href="https://linkedin.com/in/yourusername"
+                    href="https://linkedin.com/in/jacobleon02"
                     className={styles.socialIcon}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -61,7 +61,7 @@ const HeroSection = () => {
                     <FaLinkedin size={24} />
                   </a>
                   <a
-                    href="mailto:your.email@example.com"
+                    href="mailto:jacobleon2117@gmail.com"
                     className={styles.socialIcon}
                   >
                     <FaEnvelope size={24} />
