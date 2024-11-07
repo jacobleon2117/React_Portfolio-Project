@@ -1,4 +1,3 @@
-// We keep React import since we need cloneElement
 import React from 'react';
 import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaFigma } from 'react-icons/fa';
 import { SiExpress, SiJavascript, SiTypescript, SiTailwindcss, SiBootstrap } from 'react-icons/si';

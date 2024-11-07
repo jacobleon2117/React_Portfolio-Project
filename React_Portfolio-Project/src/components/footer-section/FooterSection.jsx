@@ -5,7 +5,6 @@ const FooterSection = () => {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.content}>
-          {/* Social Links */}
           <div className={styles.socialLinks}>
             <a
               href="https://github.com/yourusername"
@@ -60,8 +59,6 @@ const FooterSection = () => {
               </svg>
             </a>
           </div>
-          
-          {/* Copyright */}
           <div className={styles.footerBottom}>
             <p>© {new Date().getFullYear()} Jacob Leon</p>
           </div>
