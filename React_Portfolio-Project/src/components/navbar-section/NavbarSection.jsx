@@ -27,6 +27,11 @@ const NavbarSection = ({ theme, toggleTheme }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [prevScrollPos]);
 
+  const handleThemeToggle = () => {
+    toggleTheme();
+    // The favicon update is now handled in the App component's toggleTheme function
+  };
+
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
@@ -45,7 +50,7 @@ const NavbarSection = ({ theme, toggleTheme }) => {
 
           <div className={styles.navRight}>
             <button 
-              onClick={toggleTheme} 
+              onClick={handleThemeToggle} 
               className={styles.themeToggle}
               aria-label="Toggle theme"
             >

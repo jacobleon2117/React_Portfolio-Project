@@ -83,7 +83,7 @@ const projects = [
 
 const ProjectSection = () => {
   return (
-    <section className={styles.projectSection}>
+    <section id='projects' className={styles.projectSection}>
       <div className={styles.container}>
         <h2 className={styles.title}>Featured Projects</h2>
         <p className={styles.subtitle}>

@@ -11,7 +11,7 @@
 }
 
 .title {
-  color: #fff;
+  color: var(--text);
   font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -19,7 +19,7 @@
 }
 
 .subtitle {
-  color: #8f9ba8;
+  color: var(--text-secondary);
   text-align: center;
   font-size: 1.1rem;
   max-width: 800px;
@@ -63,7 +63,7 @@
 
 .projectCard:hover {
   transform: translateY(-4px);
-  border-color: #60a5fa;
+  border-color: var(--accent);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
@@ -121,7 +121,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
+  color: var(--text);
   z-index: 2;
   transition: opacity 0.2s ease-in-out;
   font-size: 0.85rem;
@@ -158,7 +158,7 @@
 }
 
 .projectTitle {
-  color: #fff;
+  color: var(--text);
   font-size: 1.25rem;
   font-weight: 600;
   margin: 0 0 0.5rem 0;
@@ -166,7 +166,7 @@
 }
 
 .projectDescription {
-  color: #8f9ba8;
+  color: var(--text-secondary);
   font-size: 0.85rem;
   line-height: 1.4;
   margin: 0 0 0.75rem 0;
@@ -207,10 +207,10 @@
   justify-content: center;
   gap: 0.35rem;
   padding: 0.4rem 0.75rem;
-  background-color: #252525;
-  border: 1px solid #363636;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
   border-radius: 0.5rem;
-  color: #fff;
+  color: var(--text);
   font-size: 0.8rem;
   transition: all 0.2s ease;
   cursor: pointer;
@@ -219,8 +219,8 @@
 }
 
 .projectButton:hover {
-  background-color: #2d2d2d;
-  border-color: #60a5fa;
+  background-color: var(--hover);
+  border-color: var(--accent);
 }
 
 .buttonIcon {

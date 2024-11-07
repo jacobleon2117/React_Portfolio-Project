@@ -8,10 +8,21 @@ import FooterSection from './components/footer-section/FooterSection'
 import './styles/globals.css'
 
 function App() {
-  const [theme, setTheme] = useState('dark')
+  // Initialize theme from localStorage or default to 'dark'
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem('theme')
+    return savedTheme || 'dark'
+  })
 
   useEffect(() => {
+    // Update document theme
     document.documentElement.setAttribute('data-theme', theme)
+    
+    // Update favicon
+    window.updateFavicon?.(theme === 'dark')
+    
+    // Save theme preference
+    localStorage.setItem('theme', theme)
   }, [theme])
 
   const toggleTheme = () => {

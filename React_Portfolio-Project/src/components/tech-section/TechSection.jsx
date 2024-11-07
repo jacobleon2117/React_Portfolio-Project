@@ -1,6 +1,6 @@
 import React from 'react';
-import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaFigma } from 'react-icons/fa';
-import { SiExpress, SiJavascript, SiTypescript, SiTailwindcss, SiBootstrap } from 'react-icons/si';
+import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaFigma, FaSass } from 'react-icons/fa';
+import { SiExpress, SiJavascript, SiTypescript, SiTailwindcss, SiBootstrap, SiVite } from 'react-icons/si';
 import styles from './TechSection.module.css';
 
 const technologies = [
@@ -47,6 +47,12 @@ const technologies = [
     color: '#264de4'
   },
   {
+    name: 'SCSS',
+    icon: <FaSass />,
+    description: 'CSS Preprocessor',
+    color: '#CC6699'
+  },
+  {
     name: 'Tailwind CSS',
     icon: <SiTailwindcss />,
     description: 'CSS Framework',
@@ -57,6 +63,12 @@ const technologies = [
     icon: <SiBootstrap />,
     description: 'CSS Framework',
     color: '#563d7c'
+  },
+  {
+    name: 'Vite',
+    icon: <SiVite />,
+    description: 'Build Tool',
+    color: '#646CFF'
   },
   {
     name: 'Figma',
