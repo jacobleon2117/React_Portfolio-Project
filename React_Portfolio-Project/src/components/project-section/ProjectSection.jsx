@@ -1,6 +1,7 @@
 import { FaReact, FaNodeJs, FaExpandAlt, FaGithub, FaExternalLinkAlt, FaHtml5, FaCss3Alt } from 'react-icons/fa';
 import { SiMongodb, SiExpress, SiTypescript, SiNextdotjs, SiTailwindcss, 
-         SiSupabase, SiD3Dotjs, SiPostgresql, SiVuedotjs, SiFirebase } from 'react-icons/si';
+         SiSupabase, SiD3Dotjs, SiPostgresql, SiVuedotjs, SiFirebase,
+         SiRedis, SiGraphql } from 'react-icons/si';
 import styles from './ProjectSection.module.css';
 
 const techColors = {
@@ -17,7 +18,9 @@ const techColors = {
   'Vue.js': '#4FC08D',
   Firebase: '#FFCA28',
   HTML: '#E34F26',
-  CSS: '#1572B6'
+  CSS: '#1572B6',
+  Redis: '#DC382D',
+  GraphQL: '#E10098'
 };
 
 const getTechIcon = (tech) => {
@@ -35,7 +38,9 @@ const getTechIcon = (tech) => {
     'Vue.js': SiVuedotjs,
     Firebase: SiFirebase,
     HTML: FaHtml5,
-    CSS: FaCss3Alt
+    CSS: FaCss3Alt,
+    Redis: SiRedis,
+    GraphQL: SiGraphql
   };
   return icons[tech];
 };
@@ -44,8 +49,8 @@ const projects = [
   {
     id: 1,
     title: 'Portfolio Website',
-    description: 'A full-stack web application built with React, Node.js, and MongoDB.',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Express'],
+    description: 'A modern, responsive portfolio website built with React and Vite. Features a dark/light theme toggle, smooth animations, and fully responsive design using Tailwind CSS.',
+    technologies: ['React', 'Node.js', 'vercel', 'vite', 'javascript', 'HTML', 'CSS', 'Tailwind CSS'],
     image: '/public/images/PF-ss.png',
     githubUrl: 'https://github.com/jacobleon2117/React_Portfolio-Project',
     hasImage: true
@@ -53,32 +58,29 @@ const projects = [
 
   {
     id: 2,
-    title: 'Project Two',
-    description: 'Modern e-commerce platform with real-time inventory management.',
-    technologies: ['TypeScript', 'Next.js', 'Tailwind CSS', 'Supabase'],
-    githubUrl: 'https://github.com/jacobleon2117',
-    liveUrl: 'https://...',
+    title: 'GraphQL - Backend / Frontend',
+    description: 'A full-stack GraphQL implementation featuring user authentication, API integration, and optimized data queries. Built with Apollo Server and React.',
+    technologies: ['GraphQL', 'React', 'Node.js', 'MongoDB', 'Express', 'JavaScript', 'HTML', 'CSS'],
+    githubUrl: 'https://github.com/jacobleon2117/atlas-web_graphql',
     hasImage: false
-  },
-  {
+},
+{
     id: 3,
-    title: 'Project Three',
-    description: 'Interactive dashboard with data visualization and analytics.',
-    technologies: ['React', 'D3.js', 'Node.js', 'PostgreSQL'],
-    githubUrl: 'https://github.com/jacobleon2117',
-    liveUrl: 'https://...',
+    title: 'Atlas Files Manager',
+    description: 'A robust file management system with Redis caching, user authentication, and file upload capabilities. Features thumbnail generation and background processing.',
+    technologies: ['Redis', 'Node.js', 'MongoDB', 'Express', 'JavaScript', 'HTML', 'CSS'],
+    githubUrl: 'https://github.com/jacobleon2117/atlas-atlas-files_manager',
     hasImage: false
-  },
-  {
+},
+{
     id: 4,
-    title: 'Project Four',
-    description: 'A comprehensive project management system with task tracking and team collaboration features.',
-    technologies: ['Node.js', 'MongoDB', 'Express', 'HTML', 'CSS'],
+    title: '3MEALS',
+    description: 'An application that allows users to search for recipes, users can also save recipes.',
+    technologies: ['Node.js', 'MongoDB', 'Express', 'JavaScript', 'HTML', 'CSS'],
     image: '/public/images/3MEALS-ss.png',
     githubUrl: 'https://github.com/jacobleon2117/3MEALS',
-    liveUrl: 'https://...',
     hasImage: true
-  }
+},
 ];
 
 const ProjectSection = () => {
