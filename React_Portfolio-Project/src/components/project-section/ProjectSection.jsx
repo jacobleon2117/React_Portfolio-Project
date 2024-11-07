@@ -1,4 +1,4 @@
-import { FaReact, FaNodeJs, FaExpandAlt, FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaReact, FaNodeJs, FaExpandAlt, FaGithub, FaExternalLinkAlt, FaHtml5, FaCss3Alt } from 'react-icons/fa';
 import { SiMongodb, SiExpress, SiTypescript, SiNextdotjs, SiTailwindcss, 
          SiSupabase, SiD3Dotjs, SiPostgresql, SiVuedotjs, SiFirebase } from 'react-icons/si';
 import styles from './ProjectSection.module.css';
@@ -15,7 +15,9 @@ const techColors = {
   'D3.js': '#F9A03C',
   PostgreSQL: '#336791',
   'Vue.js': '#4FC08D',
-  Firebase: '#FFCA28'
+  Firebase: '#FFCA28',
+  HTML: '#E34F26',
+  CSS: '#1572B6'
 };
 
 const getTechIcon = (tech) => {
@@ -31,29 +33,31 @@ const getTechIcon = (tech) => {
     'D3.js': SiD3Dotjs,
     PostgreSQL: SiPostgresql,
     'Vue.js': SiVuedotjs,
-    Firebase: SiFirebase
+    Firebase: SiFirebase,
+    HTML: FaHtml5,
+    CSS: FaCss3Alt
   };
   return icons[tech];
 };
 
 const projects = [
   {
-    id: 1, // Added IDs for better key management
-    title: 'Project One',
+    id: 1,
+    title: 'Portfolio Website',
     description: 'A full-stack web application built with React, Node.js, and MongoDB.',
     technologies: ['React', 'Node.js', 'MongoDB', 'Express'],
-    image: '/public/images/123.jpg',
-    githubUrl: 'https://github.com/yourusername/project1',
-    liveUrl: 'https://project1.com',
+    image: '/public/images/PF-ss.png',
+    githubUrl: 'https://github.com/jacobleon2117/React_Portfolio-Project',
     hasImage: true
   },
+
   {
     id: 2,
     title: 'Project Two',
     description: 'Modern e-commerce platform with real-time inventory management.',
     technologies: ['TypeScript', 'Next.js', 'Tailwind CSS', 'Supabase'],
-    githubUrl: 'https://github.com/yourusername/project2',
-    liveUrl: 'https://project2.com',
+    githubUrl: 'https://github.com/jacobleon2117',
+    liveUrl: 'https://...',
     hasImage: false
   },
   {
@@ -61,18 +65,18 @@ const projects = [
     title: 'Project Three',
     description: 'Interactive dashboard with data visualization and analytics.',
     technologies: ['React', 'D3.js', 'Node.js', 'PostgreSQL'],
-    githubUrl: 'https://github.com/yourusername/project3',
-    liveUrl: 'https://project3.com',
+    githubUrl: 'https://github.com/jacobleon2117',
+    liveUrl: 'https://...',
     hasImage: false
   },
   {
     id: 4,
     title: 'Project Four',
     description: 'A comprehensive project management system with task tracking and team collaboration features.',
-    technologies: ['Vue.js', 'Firebase', 'Tailwind CSS', 'Express'],
-    image: '/public/images/123.jpg',
-    githubUrl: 'https://github.com/yourusername/project4',
-    liveUrl: 'https://project4.com',
+    technologies: ['Node.js', 'MongoDB', 'Express', 'HTML', 'CSS'],
+    image: '/public/images/3MEALS-ss.png',
+    githubUrl: 'https://github.com/jacobleon2117/3MEALS',
+    liveUrl: 'https://...',
     hasImage: true
   }
 ];
@@ -135,15 +139,6 @@ const ProjectSection = () => {
                   >
                     <FaGithub className={styles.buttonIcon} />
                     Code
-                  </a>
-                  <a 
-                    href={project.liveUrl}
-                    className={styles.projectButton}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaExternalLinkAlt className={styles.buttonIcon} />
-                    Demo
                   </a>
                 </div>
               </div>

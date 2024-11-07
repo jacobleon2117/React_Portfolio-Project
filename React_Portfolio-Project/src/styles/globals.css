@@ -9,9 +9,7 @@
   min-height: 100vh;
   overflow-x: hidden;
 }
-html {
-  scroll-behavior: smooth;
-}
+
 :root {
   --light-bg: #ffffff;
   --light-bg-secondary: #f8f9fa;
@@ -75,6 +73,7 @@ body {
   line-height: 1.5;
   transition: background-color var(--transition-speed) ease-in-out,
               color var(--transition-speed) ease-in-out;
+  scroll-behavior: smooth;
 }
 
 .container {
