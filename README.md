@@ -4,7 +4,7 @@ A modern, responsive portfolio website built with React and Vite. Features a dar
 
 # Live View
 
-[text](https://jacobleon.netlify.app/#tech)
+[Live Website](https://jacobleon.netlify.app/#tech)
 
 ## Features
 
