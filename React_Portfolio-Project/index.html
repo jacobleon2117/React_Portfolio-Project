@@ -7,20 +7,15 @@
     <meta name="description" content="Jacob Leon - Full Stack Developer Portfolio showcasing web development projects and technical skills" />
     <meta name="keywords" content="Jacob Leon, Web Developer, React Developer, Full Stack Developer, Portfolio" />
     <meta name="author" content="Jacob Leon" />
-    
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Jacob Leon - Portfolio" />
     <meta property="og:description" content="Full Stack Developer Portfolio showcasing web development projects and technical skills" />
-    
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Jacob Leon - Portfolio" />
     <meta name="twitter:description" content="Full Stack Developer Portfolio showcasing web development projects and technical skills" />
     
     <title>Jacob Leon - Portfolio</title>
     <script>
-      // Make favicon updater available globally
       window.updateFavicon = (isDark) => {
         const favicon = document.getElementById('favicon');
         if (favicon) {
@@ -28,11 +23,9 @@
         }
       };
 
-      // Initial setup based on system preference
       const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
       window.updateFavicon(darkModeMediaQuery.matches);
       
-      // Listen for system theme changes
       darkModeMediaQuery.addEventListener('change', (e) => {
         window.updateFavicon(e.matches);
       });

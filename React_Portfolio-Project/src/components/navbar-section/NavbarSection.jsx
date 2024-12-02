@@ -29,7 +29,6 @@ const NavbarSection = ({ theme, toggleTheme }) => {
 
   const handleThemeToggle = () => {
     toggleTheme();
-    // The favicon update is now handled in the App component's toggleTheme function
   };
 
   const closeMenu = () => {
