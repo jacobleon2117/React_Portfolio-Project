@@ -7,7 +7,7 @@ const FooterSection = () => {
         <div className={styles.content}>
           <div className={styles.socialLinks}>
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/jacobleon2117"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -25,7 +25,7 @@ const FooterSection = () => {
               </svg>
             </a>
             <a
-              href="https://linkedin.com/in/yourusername"
+              href="https://linkedin.com/in/jacobleon02"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
@@ -43,7 +43,7 @@ const FooterSection = () => {
               </svg>
             </a>
             <a
-              href="mailto:your.email@example.com"
+              href="mailto:jacobleon2117@gmail.com"
               aria-label="Email"
             >
               <svg

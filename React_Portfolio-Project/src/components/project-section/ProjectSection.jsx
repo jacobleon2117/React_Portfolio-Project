@@ -51,7 +51,7 @@ const projects = [
     title: 'Portfolio Website',
     description: 'A modern, responsive portfolio website built with React and Vite. Features a dark/light theme toggle, smooth animations, and fully responsive design using Tailwind CSS.',
     technologies: ['React', 'Node.js', 'vercel', 'vite', 'javascript', 'HTML', 'CSS', 'Tailwind CSS'],
-    image: '/public/images/PF-ss.png',
+    image: '/images/PF-ss.png',
     githubUrl: 'https://github.com/jacobleon2117/React_Portfolio-Project',
     hasImage: true
   },
@@ -77,7 +77,7 @@ const projects = [
     title: '3MEALS',
     description: 'An application that allows users to search for recipes, users can also save recipes.',
     technologies: ['Node.js', 'MongoDB', 'Express', 'JavaScript', 'HTML', 'CSS'],
-    image: '/public/images/3MEALS-ss.png',
+    image: '/images/3MEALS-SS.png',
     githubUrl: 'https://github.com/jacobleon2117/3MEALS',
     hasImage: true
 },
