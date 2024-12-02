@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { FaSun, FaMoon, FaDownload } from 'react-icons/fa'; // Add FaDownload
+import { FaSun, FaMoon, FaDownload } from 'react-icons/fa';
 import styles from './NavbarSection.module.css';
 
 const MobileNavbar = ({ isOpen, onClose, theme, onThemeToggle }) => {
@@ -8,7 +8,6 @@ const MobileNavbar = ({ isOpen, onClose, theme, onThemeToggle }) => {
   };
 
   const handleResumeClick = () => {
-    // Close menu when downloading resume
     onClose();
   };
 
