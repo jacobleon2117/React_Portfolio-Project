@@ -1,9 +1,14 @@
 import PropTypes from 'prop-types';
-import { FaSun, FaMoon } from 'react-icons/fa';
+import { FaSun, FaMoon, FaDownload } from 'react-icons/fa'; // Add FaDownload
 import styles from './NavbarSection.module.css';
 
 const MobileNavbar = ({ isOpen, onClose, theme, onThemeToggle }) => {
   const handleLinkClick = () => {
+    onClose();
+  };
+
+  const handleResumeClick = () => {
+    // Close menu when downloading resume
     onClose();
   };
 
@@ -44,11 +49,14 @@ const MobileNavbar = ({ isOpen, onClose, theme, onThemeToggle }) => {
             Projects
           </a>
           <a 
-            href="#contact" 
-            className={styles.menuItem}
-            onClick={handleLinkClick}
+            href="/JacobLeon-Resume.pdf"
+            className={`${styles.menuItem} ${styles.resumeButton}`}
+            onClick={handleResumeClick}
+            download
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            Contact
+            Resume <FaDownload size={16} className={styles.downloadIcon} />
           </a>
         </nav>
       </div>

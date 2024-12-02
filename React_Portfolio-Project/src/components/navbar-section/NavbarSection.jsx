@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { FaBars, FaTimes, FaSun, FaMoon } from 'react-icons/fa';
+import { FaBars, FaTimes, FaSun, FaMoon, FaDownload } from 'react-icons/fa';
 import styles from './NavbarSection.module.css';
 
 const NavbarSection = ({ theme, toggleTheme }) => {
@@ -56,6 +56,16 @@ const NavbarSection = ({ theme, toggleTheme }) => {
               {theme === 'dark' ? <FaSun size={20} /> : <FaMoon size={20} />}
             </button>
 
+            <a 
+              href="/jacob_leon-resume.png"
+              className={styles.resumeButton}
+              download
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Resume <FaDownload size={16} />
+            </a>
+
             <button 
               className={styles.menuButton}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -91,8 +101,15 @@ const NavbarSection = ({ theme, toggleTheme }) => {
               <a href="#projects" className={styles.menuItem} onClick={closeMenu}>
                 Projects
               </a>
-              <a href="#contact" className={styles.menuItem} onClick={closeMenu}>
-                Contact
+              <a 
+                href="/JacobLeon-Resume.pdf"
+                className={styles.menuItem}
+                onClick={closeMenu}
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Resume <FaDownload size={16} className={styles.downloadIcon} />
               </a>
             </nav>
           </div>

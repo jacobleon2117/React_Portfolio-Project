@@ -80,7 +80,7 @@ const technologies = [
 
 const TechSection = () => {
   return (
-    <section id="tech" className={styles.section}>
+    <section id="tech" className={styles.techSection}>
       <div className={styles.container}>
         <h1 className={styles.title}>Current technologies</h1>
         <p className={styles.subtitle}>
