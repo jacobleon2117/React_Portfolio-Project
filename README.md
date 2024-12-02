@@ -2,6 +2,10 @@
 
 A modern, responsive portfolio website built with React and Vite. Features a dark/light theme toggle, smooth animations, and fully responsive design.
 
+# Live View
+
+[text](https://jacobleon.netlify.app/#tech)
+
 ## Features
 
 - 🌓 Dark/Light Theme Toggle
