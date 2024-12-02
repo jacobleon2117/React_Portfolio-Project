@@ -99,6 +99,4 @@ This project is open source and available under the MIT License.
 
 ## Contact
 
-Jacob Leon
-
 - GitHub: [jacobleon2117](https://github.com/jacobleon2117)
