@@ -70,6 +70,69 @@
   gap: 1.5rem;
 }
 
+.resumeWrapper {
+  position: relative;
+  margin: 0 1rem;
+}
+
+.resumeButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  color: var(--accent);
+  font-weight: 500;
+  border-radius: var(--border-radius);
+  transition: all var(--transition-speed) ease-in-out;
+  border: 1px solid var(--accent);
+  background: none;
+  cursor: pointer;
+}
+
+.resumeButton:hover {
+  background-color: var(--accent);
+  color: var(--bg);
+}
+
+.resumeDropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
+  padding: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-speed) ease-in-out;
+  min-width: 160px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.resumeDropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(4px);
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  color: var(--text);
+  text-decoration: none;
+  transition: all var(--transition-speed) ease-in-out;
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+}
+
+.dropdownItem:hover {
+  background-color: var(--hover);
+  color: var(--accent);
+}
+
 .themeToggle {
   background: none;
   border: none;
@@ -169,6 +232,97 @@
   color: var(--accent);
 }
 
+.menuDivider {
+  height: 1px;
+  background-color: var(--border);
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.resumeSection {
+  padding: 0.5rem 1rem;
+}
+
+.resumeTitle {
+  color: var(--text);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.resumeActions {
+  display: flex;
+  gap: 1rem;
+}
+
+.resumeActionBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
+  background: var(--bg-secondary);
+  color: var(--text);
+  cursor: pointer;
+  transition: all var(--transition-speed) ease-in-out;
+  flex: 1;
+}
+
+.resumeActionBtn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.promptOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.prompt {
+  background-color: var(--bg);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  width: 90%;
+  max-width: 300px;
+}
+
+.prompt p {
+  margin-bottom: 1.5rem;
+  color: var(--text);
+}
+
+.promptActions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.promptBtn {
+  padding: 0.5rem 1.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text);
+  cursor: pointer;
+  transition: all var(--transition-speed) ease-in-out;
+  text-decoration: none;
+}
+
+.promptBtn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -197,7 +351,8 @@
     display: flex;
     align-items: center;
   }
-  .resumeButton {
+
+  .resumeWrapper {
     display: none;
   }
 }
@@ -208,31 +363,8 @@
   .menuButton {
     display: none;
   }
-}
 
-.resumeButton {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  color: var(--accent);
-  font-weight: 500;
-  border-radius: var(--border-radius);
-  transition: all var(--transition-speed) ease-in-out;
-  border: 1px solid var(--accent);
-  margin: 0 1rem;
-  text-decoration: none;
-}
-
-.resumeButton:hover {
-  background-color: var(--accent);
-  color: var(--bg);
-}
-
-.resumeButton svg {
-  transition: transform var(--transition-speed) ease-in-out;
-}
-
-.resumeButton:hover svg {
-  transform: translateY(2px);
+  .resumeSection {
+    display: none;
+  }
 }
