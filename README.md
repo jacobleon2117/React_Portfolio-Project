@@ -1,5 +1,7 @@
 # Personal Portfolio Website
 
+<img src="" alt="portfolio SS" width="100%">
+
 A modern, responsive portfolio website built with React and Vite. Features a dark/light theme toggle, smooth animations, and fully responsive design.
 
 # Live View
