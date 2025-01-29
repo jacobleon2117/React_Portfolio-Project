@@ -1,7 +1,6 @@
 [build]
   command = "npm run build"
   publish = "build"
-  base = "react-portfolio-project"
 
 [[redirects]]
   from = "/*"
