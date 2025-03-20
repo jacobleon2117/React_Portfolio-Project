@@ -1,104 +1,113 @@
 # Personal Portfolio Website
 
-<img src="/public/images/readme-ss.png" alt="portfolio SS" width="100%">
-
-A modern, responsive portfolio website built with React and Vite. Features a dark/light theme toggle, smooth animations, and fully responsive design.
-
-# Live View
-
-[Live Website](https://jacobleon.netlify.app/#tech)
+A modern, responsive personal portfolio website built with React and styled with Tailwind CSS. This portfolio showcases projects, skills, and resume information with a clean, professional design that includes both light and dark mode support.
 
 ## Features
 
-- 🌓 Dark/Light Theme Toggle
-- 📱 Fully Responsive Design
-- 🎨 Modern UI/UX
-- ⚡ Fast Loading with Vite
-- 🖼️ Project Showcase
-- 💻 Tech Stack Display
-- 🔄 Smooth Animations
+- **Responsive Design**: Fully responsive layout that works on mobile, tablet, and desktop devices
+- **Theme Switching**: Toggle between light and dark mode
+- **Animated Navigation**: Navbar hides on scroll down and reappears on scroll up
+- **Mobile-Friendly Navigation**: Custom mobile menu with smooth transitions
+- **Resume Access**: Multiple ways to view and download resume (dropdown menu and dedicated mobile section)
+- **Dynamic Components**: Includes animations and interactive elements
 
-## Tech Stack
+## Technologies Used
 
 - React
-- Vite
-- JavaScript
-- CSS Modules
+- React Router
+- Tailwind CSS
 - React Icons
-- PropTypes
+- CSS Variables for theming
 
-## Getting Started
+## Component Structure
 
-### Prerequisites
+The application is organized into several key components:
 
-- Node.js (version 14 or higher)
-- npm or yarn
+- **NavbarSection**: Navigation bar with theme toggle, resume dropdown, and mobile menu
+- **LogoTypingAnimation**: Animated logo component
+- **AboutSection**: Personal information and skills
+- **ProjectsSection**: Portfolio of work and projects
+- **Other sections**: Contact, footer, etc.
 
-### Installation
+## Recent Updates
+
+- Improved mobile navigation menu layout and accessibility
+- Added dedicated Resume card in mobile navigation with accent border
+- Made resume options consistent between desktop dropdown and mobile menu
+- Removed redundant logo from mobile menu when open
+- Enhanced visual hierarchy with styled section headers
+
+## Installation and Setup
 
 1. Clone the repository
+```bash
+git clone https://github.com/jacobleon2117/React_Portfolio-Project.git
+cd React_Portfolio-Project
+```
 
-   ```bash
-   git clone https://github.com/jacobleon2117/React_Portfolio-Project.git
-   ```
+2. Install dependencies
+```bash
+npm install
+```
 
-2. Navigate to project directory
+3. Start the development server
+```bash
+npm start
+```
 
-   ```bash
-   cd React_Portfolio-Project
-   ```
-
-3. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-4. Start development server
-   ```bash
-   npm run dev
-   ```
-
-### Building for Production
-
+4. Build for production
 ```bash
 npm run build
 ```
 
-## Project Structure
-
-```
-React_Portfolio-Project/
-├── public/
-│   └── images/        # Project images and assets
-├── src/
-│   ├── components/    # React components
-│   ├── styles/        # Global styles
-│   └── App.jsx        # Main application component
-└── index.html
-```
-
-## Components
-
-- **NavbarSection**: Navigation and theme toggle
-- **HeroSection**: Main landing section
-- **AboutSection**: Personal information and skills
-- **TechSection**: Technology stack showcase
-- **ProjectSection**: Portfolio projects display
-- **FooterSection**: Contact information and links
-
 ## Customization
 
-The site uses CSS custom properties for easy theme customization. These can be found in the `globals.css` file.
+### Theming
 
-## Contributing
+The application uses CSS variables for theming. Edit the `:root` selector in your CSS to customize colors:
 
-Feel free to fork this project and customize it for your own use. If you find any bugs or have suggestions, please open an issue.
+```css
+:root {
+  --bg: #ffffff;
+  --bg-secondary: #f3f4f6;
+  --text: #374151;
+  --text-secondary: #6b7280;
+  --accent: #3b82f6; /* The primary blue accent color */
+  --border: #e5e7eb;
+  --hover: #f3f4f6;
+}
+
+[data-theme="dark"] {
+  --bg: #111827;
+  --bg-secondary: #1f2937;
+  --text: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --accent: #3b82f6; /* Same accent for consistency */
+  --border: #374151;
+  --hover: #1f2937;
+}
+```
+
+### Content
+
+Update your personal information, projects, and resume by editing the relevant component files.
+
+## Deployment
+
+This project can be deployed to services like Vercel, Netlify, or GitHub Pages. For example, to deploy to Netlify:
+
+1. Push your code to a GitHub repository
+2. Connect Netlify to your GitHub account
+3. Select the repository and configure build settings:
+   - Build command: `npm run build`
+   - Publish directory: `build` or `dist` (depending on your configuration)
 
 ## License
 
-This project is open source and available under the MIT License.
+MIT License
 
 ## Contact
 
-- GitHub: [jacobleon2117](https://github.com/jacobleon2117)
+Jacob Leon - [jacobleon2117@gmail.com](mailto:jacobleon2117@gmail.com)
+
+Project Link: [https://github.com/jacobleon2117/React_Portfolio-Project](https://github.com/jacobleon2117/React_Portfolio-Project)
