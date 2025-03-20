@@ -9,6 +9,7 @@ import {
   FaChevronDown,
   FaExternalLinkAlt,
 } from "react-icons/fa";
+import LogoTypingAnimation from "../common/LogoTypingAnimation";
 
 const NavbarSection = ({ theme, toggleTheme }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -89,12 +90,12 @@ const NavbarSection = ({ theme, toggleTheme }) => {
         <div className="container h-full flex items-center justify-between px-8 max-w-7xl mx-auto">
           <a
             href="/"
-            className="text-2xl font-bold text-[var(--accent)] no-underline transition-colors duration-200 hover:text-[var(--text)]"
+            className="flex items-center justify-center min-w-[60px] font-bold text-[var(--accent)] no-underline transition-colors duration-200 hover:text-[var(--text)]"
+            aria-label="Home"
           >
-            {"<"}
-            {"/"}
-            {"J"}
-            {">"}
+            <div className="w-[60px] text-center">
+              <LogoTypingAnimation />
+            </div>
           </a>
 
           <div className="hidden md:flex items-center gap-10">
