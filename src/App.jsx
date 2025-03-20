@@ -4,7 +4,6 @@ import { ThemeProvider } from "./context/ThemeContext";
 import "./styles/globals.css";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
-const AboutPage = lazy(() => import("./pages/AboutPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 const Loading = () => (
@@ -20,7 +19,6 @@ function App() {
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
