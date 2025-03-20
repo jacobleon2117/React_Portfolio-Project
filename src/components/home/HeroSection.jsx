@@ -8,13 +8,10 @@ const HeroSection = () => {
     <section className="min-h-[calc(100vh-var(--navbar-height))] flex items-center justify-center bg-[var(--bg)] relative overflow-hidden py-12">
       <Particles
         className="absolute inset-0 z-0"
-        quantity={150}
-        staticity={40}
-        ease={50}
-        size={1}
-        color="#60a5fa"
-        vx={0.3}
-        vy={0.3}
+        quantity={200}
+        size={0.4}
+        colors={["#3b82f6", "#f8fafc", "#f1f5f9"]}
+        fadeToBottom={true}
       />
       <div className="w-full max-w-5xl mx-auto px-8 relative z-10">
         <div className="flex flex-col md:flex-row items-start justify-center gap-8">

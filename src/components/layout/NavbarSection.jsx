@@ -111,7 +111,7 @@ const NavbarSection = ({ theme, toggleTheme }) => {
             </div>
           </Link>
 
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden">
             {navItems.map((item) => (
               <a
                 key={item.name}
@@ -243,7 +243,7 @@ const NavbarSection = ({ theme, toggleTheme }) => {
                     onClick={closeMenu}
                   >
                     <FaExternalLinkAlt size={16} />
-                    <span>View in New Tab</span>
+                    <span>View Resume in New Tab</span>
                   </a>
                   <a
                     href="/JacobLeon-Resume.pdf"
@@ -252,12 +252,11 @@ const NavbarSection = ({ theme, toggleTheme }) => {
                     onClick={closeMenu}
                   >
                     <FaDownload size={16} />
-                    <span>Download PDF</span>
+                    <span>Download Resume PDF</span>
                   </a>
                 </div>
               </div>
             </div>
-
             <div className="mt-auto pb-8"></div>
           </div>
         </div>

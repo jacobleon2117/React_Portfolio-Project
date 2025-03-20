@@ -1,8 +1,8 @@
-import { FaGithub, FaLinkedin, FaEnvelope, FaArrowUp } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 const FooterSection = () => {
   return (
-    <footer className="bg-[var(--bg-secondary)] py-8 border-t border-[var(--border)]">
+    <footer className="bg-[var(--bg-secondary)] py-8 border-t border-[var(--border)] w-full mt-auto">
       <div className="container max-w-7xl mx-auto px-8">
         <div className="flex flex-col items-center justify-center gap-6">
           <div className="flex gap-6">

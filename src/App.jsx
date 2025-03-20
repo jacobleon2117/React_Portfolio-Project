@@ -1,6 +1,7 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "./context/ThemeContext";
+import { ThemeProvider, ThemeContext } from "./context/ThemeContext";
+import ParticleBackground from "./components/common/ParticleBackground";
 import "./styles/globals.css";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -12,9 +13,13 @@ const Loading = () => (
   </div>
 );
 
-function App() {
+// Wrapper component that uses the theme context
+const AppContent = () => {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <ThemeProvider>
+    <>
+      <ParticleBackground theme={theme} />
       <BrowserRouter>
         <Suspense fallback={<Loading />}>
           <Routes>
@@ -23,6 +28,14 @@ function App() {
           </Routes>
         </Suspense>
       </BrowserRouter>
+    </>
+  );
+};
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
     </ThemeProvider>
   );
 }
