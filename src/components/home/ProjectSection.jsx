@@ -1,7 +1,6 @@
 import {
   FaReact,
   FaNodeJs,
-  FaExpandAlt,
   FaGithub,
   FaExternalLinkAlt,
   FaHtml5,
@@ -20,6 +19,8 @@ import {
   SiFirebase,
   SiRedis,
   SiGraphql,
+  SiJavascript,
+  SiVite,
 } from "react-icons/si";
 
 const techColors = {
@@ -39,6 +40,9 @@ const techColors = {
   CSS: "#1572B6",
   Redis: "#DC382D",
   GraphQL: "#E10098",
+  JavaScript: "#F7DF1E",
+  Vite: "#646CFF",
+  Vercel: "#000000",
 };
 
 const getTechIcon = (tech) => {
@@ -59,6 +63,8 @@ const getTechIcon = (tech) => {
     CSS: FaCss3Alt,
     Redis: SiRedis,
     GraphQL: SiGraphql,
+    JavaScript: SiJavascript,
+    Vite: SiVite,
   };
   return icons[tech];
 };
@@ -66,152 +72,172 @@ const getTechIcon = (tech) => {
 const projects = [
   {
     id: 1,
-    title: "Portfolio Website",
+    title: "Modern Portfolio Website",
     description:
-      "A modern, responsive portfolio website built with React and Vite. Features a dark/light theme toggle, smooth animations, and fully responsive design using Tailwind CSS.",
+      "A responsive portfolio website showcasing my projects and skills. Built with React and features a dark/light theme toggle, smooth animations, and accessibility-focused design using Tailwind CSS.",
     technologies: [
       "React",
-      "Node.js",
-      "vercel",
-      "vite",
-      "javascript",
+      "JavaScript",
+      "Vite",
       "HTML",
       "CSS",
       "Tailwind CSS",
     ],
     image: "/images/PF-ss.png",
-    githubUrl: "https://github.com/jacobleon2117/React_Portfolio-Project",
+    liveUrl: "https://example.com/portfolio",
+    githubUrl: "https://github.com/example/portfolio-project",
     hasImage: true,
   },
   {
     id: 2,
-    title: "GraphQL - Backend / Frontend",
+    title: "Task Management Dashboard",
     description:
-      "A full-stack GraphQL implementation featuring user authentication, API integration, and optimized data queries. Built with Apollo Server and React.",
+      "A full-stack task management application with user authentication, task categorization, and productivity analytics. Features drag-and-drop functionality and real-time updates.",
     technologies: [
-      "GraphQL",
       "React",
       "Node.js",
       "MongoDB",
       "Express",
       "JavaScript",
-      "HTML",
-      "CSS",
+      "Tailwind CSS",
     ],
-    githubUrl: "https://github.com/jacobleon2117/atlas-web_graphql",
-    hasImage: false,
+    image: "/images/task-dashboard.jpg",
+    liveUrl: "https://example.com/task-dashboard",
+    githubUrl: "https://github.com/example/task-management",
+    hasImage: true,
   },
   {
     id: 3,
-    title: "Atlas Files Manager",
+    title: "E-Commerce Platform",
     description:
-      "A robust file management system with Redis caching, user authentication, and file upload capabilities. Features thumbnail generation and background processing.",
+      "A comprehensive e-commerce solution with product management, shopping cart functionality, user authentication, and payment processing integration. Includes admin dashboard for inventory management.",
     technologies: [
-      "Redis",
+      "React",
       "Node.js",
       "MongoDB",
       "Express",
       "JavaScript",
-      "HTML",
-      "CSS",
+      "Tailwind CSS",
     ],
-    githubUrl: "https://github.com/jacobleon2117/atlas-atlas-files_manager",
-    hasImage: false,
+    image: "/images/ecommerce-project.jpg",
+    liveUrl: "https://example.com/ecommerce",
+    githubUrl: "https://github.com/example/ecommerce-platform",
+    hasImage: true,
   },
   {
     id: 4,
-    title: "3MEALS",
+    title: "Recipe Finder Application",
     description:
-      "An application that allows users to search for recipes, users can also save recipes.",
+      "A web application that enables users to discover recipes based on ingredients they have on hand. Includes features for saving favorites, creating meal plans, and sharing recipes with friends.",
     technologies: [
+      "React",
       "Node.js",
       "MongoDB",
       "Express",
       "JavaScript",
-      "HTML",
       "CSS",
     ],
     image: "/images/3MEALS-SS.png",
-    githubUrl: "https://github.com/jacobleon2117/3MEALS",
+    liveUrl: "https://example.com/recipe-finder",
+    githubUrl: "https://github.com/example/recipe-finder",
+    hasImage: true,
+  },
+  {
+    id: 5,
+    title: "Real-time Chat Application",
+    description:
+      "A feature-rich messaging platform with real-time communication, user presence indicators, and media sharing capabilities. Implemented with WebSockets for instant message delivery.",
+    technologies: [
+      "React",
+      "Node.js",
+      "Socket.io",
+      "MongoDB",
+      "Express",
+      "JavaScript",
+    ],
+    image: "/images/chat-app.jpg",
+    liveUrl: "https://example.com/chat-app",
+    githubUrl: "https://github.com/example/chat-application",
     hasImage: true,
   },
 ];
 
 const ProjectSection = () => {
   return (
-    <section id="projects" className="bg-[var(--bg)] py-16 pb-24 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8">
-        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-[var(--text)] text-center">
-          Featured Projects
+    <section id="projects" className="bg-[var(--bg)] py-16 pb-24">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8">
+        <h2 className="text-3xl font-bold mb-12 text-[var(--text)] text-center">
+          Projects
         </h2>
-        <p className="text-[var(--text-secondary)] text-center text-lg max-w-3xl mx-auto mb-12 leading-relaxed">
-          Some of my recent work that showcases my skills and experience
-        </p>
 
-        <div className="grid grid-cols-9 gap-6 mx-auto mb-8">
-          {projects.map((project) => (
+        <div className="flex flex-col gap-8">
+          {projects.map((project, index) => (
             <div
               key={project.id}
-              className={`bg-[var(--bg-secondary)] rounded-lg border border-[var(--border)] relative ${
-                project.hasImage ? "pb-0" : "p-4"
-              } 
-                h-80 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent)] hover:shadow-lg
-                ${project.id === 1 ? "col-span-9 md:col-span-6" : ""}
-                ${project.id === 2 ? "col-span-9 md:col-span-3" : ""}
-                ${project.id === 3 ? "col-span-9 md:col-span-3" : ""}
-                ${project.id === 4 ? "col-span-9 md:col-span-6" : ""}
-              `}
+              className="bg-[var(--bg-secondary)] rounded-lg border border-[var(--border)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent)] hover:shadow-lg"
             >
-              {project.hasImage && (
-                <div className="relative w-full h-[45%] overflow-hidden transition-all duration-300 group">
-                  <div className="absolute inset-0 bg-black bg-opacity-30 transition-opacity duration-300 z-10"></div>
+              <div
+                className={`flex flex-col ${
+                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                }`}
+              >
+                <div className="md:w-3/5 relative overflow-hidden group">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="w-full h-full object-cover aspect-video md:aspect-auto transition-transform duration-300 group-hover:scale-105"
                   />
-                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-white z-20 transition-opacity duration-200 text-sm opacity-80">
-                    <FaExpandAlt className="text-xl mb-1" />
-                    <span>Expand</span>
+                  <div className="absolute inset-0 bg-black bg-opacity-30 transition-opacity duration-300 z-10"></div>
+                </div>
+
+                <div className="md:w-2/5 p-6 flex flex-col">
+                  <h3 className="text-xl font-semibold mb-3 text-[var(--text)] leading-tight">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-[var(--text-secondary)] text-sm leading-relaxed mb-4">
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-3 mb-6">
+                    {project.technologies.map((tech) => {
+                      const IconComponent = getTechIcon(tech);
+                      return (
+                        IconComponent && (
+                          <span
+                            key={tech}
+                            className="flex items-center gap-1 bg-[var(--bg)] px-2 py-1 rounded text-xs transition-transform duration-200 hover:-translate-y-0.5"
+                            style={{ color: techColors[tech] }}
+                            title={tech}
+                          >
+                            <IconComponent className="text-base" />
+                            <span>{tech}</span>
+                          </span>
+                        )
+                      );
+                    })}
                   </div>
-                </div>
-              )}
 
-              <div className="flex flex-col h-[55%] p-4 pt-4 transition-opacity duration-300">
-                <h3 className="text-xl font-semibold mb-2 text-[var(--text)] leading-tight">
-                  {project.title}
-                </h3>
-                <p className="text-[var(--text-secondary)] text-sm leading-relaxed mb-3 line-clamp-3 flex-shrink-0">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-3 flex-shrink-0">
-                  {project.technologies.map((tech) => {
-                    const IconComponent = getTechIcon(tech);
-                    return (
-                      IconComponent && (
-                        <span
-                          key={tech}
-                          className="text-xl transition-transform duration-200 flex items-center justify-center hover:-translate-y-0.5"
-                          style={{ color: techColors[tech] }}
-                        >
-                          <IconComponent />
-                        </span>
-                      )
-                    );
-                  })}
-                </div>
-
-                <div className="mt-auto mb-2 flex gap-2">
-                  <a
-                    href={project.githubUrl}
-                    className="inline-flex items-center justify-center gap-1.5 py-1.5 px-3 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg text-[var(--text)] text-sm transition-all duration-200 cursor-pointer no-underline min-w-20 hover:bg-[var(--hover)] hover:border-[var(--accent)]"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaGithub className="text-base" />
-                    Code
-                  </a>
+                  <div className="mt-auto flex gap-3">
+                    <a
+                      href={project.liveUrl}
+                      className="inline-flex items-center justify-center gap-1.5 py-2 px-4 bg-[var(--accent)] text-white rounded-lg text-sm transition-all duration-200 cursor-pointer no-underline hover:opacity-90"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaExternalLinkAlt className="text-sm" />
+                      Live View
+                    </a>
+                    <a
+                      href={project.githubUrl}
+                      className="inline-flex items-center justify-center gap-1.5 py-2 px-4 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg text-[var(--text)] text-sm transition-all duration-200 cursor-pointer no-underline hover:bg-[var(--hover)] hover:border-[var(--accent)]"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaGithub className="text-base" />
+                      GitHub
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
