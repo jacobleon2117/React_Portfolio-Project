@@ -9,7 +9,6 @@ import {
   FaChevronDown,
   FaExternalLinkAlt,
 } from "react-icons/fa";
-import styles from "./NavbarSection.module.css";
 
 const NavbarSection = ({ theme, toggleTheme }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,7 +34,28 @@ const NavbarSection = ({ theme, toggleTheme }) => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    // Close dropdown when clicking outside
+    const handleClickOutside = (e) => {
+      const resumeButton = document.getElementById("resume-button");
+      const resumeDropdown = document.getElementById("resume-dropdown");
+
+      if (
+        resumeButton &&
+        resumeDropdown &&
+        !resumeButton.contains(e.target) &&
+        !resumeDropdown.contains(e.target)
+      ) {
+        setIsResumeDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, [prevScrollPos]);
 
   const handleThemeToggle = () => {
@@ -44,6 +64,10 @@ const NavbarSection = ({ theme, toggleTheme }) => {
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+  };
+
+  const toggleResumeDropdown = () => {
+    setIsResumeDropdownOpen(!isResumeDropdownOpen);
   };
 
   const handleMobileDownloadClick = (e) => {
@@ -58,54 +82,80 @@ const NavbarSection = ({ theme, toggleTheme }) => {
 
   return (
     <header
-      className={`${styles.header} ${
-        isVisible ? styles.visible : styles.hidden
+      className={`fixed top-0 left-0 right-0 z-50 transform transition-transform duration-300 ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <nav className={styles.navbar}>
-        <div className={`container ${styles.navContainer}`}>
-          <a href="#" className={styles.logo}>
+      <nav className="h-[var(--navbar-height)] bg-[var(--card)] border-b border-[var(--border)] transition-colors duration-200">
+        <div className="container h-full flex items-center justify-between px-8 max-w-7xl mx-auto">
+          <a
+            href="/"
+            className="text-2xl font-bold text-[var(--accent)] no-underline transition-colors duration-200 hover:text-[var(--text)]"
+          >
             {"<"}
             {"/"}
             {"J"}
             {">"}
           </a>
 
-          <div className={styles.desktopNav}>
-            <a href="#about">About</a>
-            <a href="#tech">Tech Stack</a>
-            <a href="#projects">Projects</a>
+          <div className="hidden md:flex items-center gap-10">
+            <a
+              href="/"
+              className="text-[var(--text)] no-underline font-medium transition-colors duration-200 hover:text-[var(--accent)] py-2"
+            >
+              Home
+            </a>
+            <a
+              href="/about"
+              className="text-[var(--text)] no-underline font-medium transition-colors duration-200 hover:text-[var(--accent)] py-2"
+            >
+              About
+            </a>
+            <a
+              href="#tech"
+              className="text-[var(--text)] no-underline font-medium transition-colors duration-200 hover:text-[var(--accent)] py-2"
+            >
+              Tech Stack
+            </a>
+            <a
+              href="#projects"
+              className="text-[var(--text)] no-underline font-medium transition-colors duration-200 hover:text-[var(--accent)] py-2"
+            >
+              Projects
+            </a>
           </div>
 
-          <div className={styles.navRight}>
+          <div className="flex items-center gap-6">
             <button
               onClick={handleThemeToggle}
-              className={styles.themeToggle}
+              className="bg-transparent border-none text-[var(--text)] cursor-pointer p-2 rounded-full flex items-center justify-center transition-colors duration-200 hover:bg-[var(--hover)]"
               aria-label="Toggle theme"
             >
               {theme === "dark" ? <FaSun size={20} /> : <FaMoon size={20} />}
             </button>
 
-            <div className={styles.resumeWrapper}>
+            <div className="hidden md:block relative mx-4">
               <button
-                className={styles.resumeButton}
-                onClick={() => setIsResumeDropdownOpen(!isResumeDropdownOpen)}
-                onMouseEnter={() => setIsResumeDropdownOpen(true)}
-                onMouseLeave={() => setIsResumeDropdownOpen(false)}
+                id="resume-button"
+                className="flex items-center gap-2 px-4 py-2 text-[var(--accent)] font-medium rounded-lg transition-all duration-200 border border-[var(--accent)] bg-transparent cursor-pointer hover:bg-[var(--accent)] hover:text-[var(--bg)]"
+                onClick={toggleResumeDropdown}
+                aria-expanded={isResumeDropdownOpen}
+                aria-haspopup="true"
               >
                 Resume <FaChevronDown size={12} />
               </button>
 
               <div
-                className={`${styles.resumeDropdown} ${
-                  isResumeDropdownOpen ? styles.show : ""
+                id="resume-dropdown"
+                className={`absolute top-full left-1/2 transform -translate-x-1/2 translate-y-2 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg p-2 min-w-40 shadow-lg transition-all duration-200 ${
+                  isResumeDropdownOpen
+                    ? "opacity-100 visible"
+                    : "opacity-0 invisible pointer-events-none"
                 }`}
-                onMouseEnter={() => setIsResumeDropdownOpen(true)}
-                onMouseLeave={() => setIsResumeDropdownOpen(false)}
               >
                 <a
                   href="/JacobLeon-Resume.pdf"
-                  className={styles.dropdownItem}
+                  className="flex items-center gap-2 p-2 text-[var(--text)] no-underline transition-all duration-200 rounded-lg text-sm hover:bg-[var(--hover)] hover:text-[var(--accent)]"
                   download
                 >
                   <FaDownload size={14} />
@@ -113,7 +163,7 @@ const NavbarSection = ({ theme, toggleTheme }) => {
                 </a>
                 <a
                   href="/JacobLeon-Resume.pdf"
-                  className={styles.dropdownItem}
+                  className="flex items-center gap-2 p-2 text-[var(--text)] no-underline transition-all duration-200 rounded-lg text-sm hover:bg-[var(--hover)] hover:text-[var(--accent)]"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -124,7 +174,7 @@ const NavbarSection = ({ theme, toggleTheme }) => {
             </div>
 
             <button
-              className={styles.menuButton}
+              className="md:hidden flex bg-transparent border-none text-[var(--text)] cursor-pointer p-2"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -133,52 +183,73 @@ const NavbarSection = ({ theme, toggleTheme }) => {
           </div>
         </div>
         <div
-          className={`${styles.overlay} ${isMenuOpen ? styles.open : ""}`}
+          className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-all duration-300 ${
+            isMenuOpen
+              ? "opacity-100 visible"
+              : "opacity-0 invisible pointer-events-none"
+          }`}
           onClick={closeMenu}
         />
         <div
-          className={`${styles.mobileMenu} ${isMenuOpen ? styles.open : ""}`}
+          className={`fixed top-0 right-0 w-full max-w-sm h-screen bg-[var(--bg)] border-l border-[var(--border)] z-50 transform transition-transform duration-300 ${
+            isMenuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
         >
-          <div className={styles.menuContent}>
-            <div className={styles.menuHeader}>
+          <div className="p-8 h-full flex flex-col gap-8">
+            <div className="flex justify-end pb-4 border-b border-[var(--border)]">
               <button
                 onClick={closeMenu}
-                className={styles.closeButton}
+                className="bg-transparent border-none text-[var(--text)] cursor-pointer p-2 flex items-center justify-center"
                 aria-label="Close menu"
               >
                 <FaTimes size={24} />
               </button>
             </div>
 
-            <nav className={styles.menuItems}>
-              <a href="#about" className={styles.menuItem} onClick={closeMenu}>
+            <nav className="flex flex-col gap-4">
+              <a
+                href="/"
+                className="text-lg text-[var(--text)] no-underline p-4 rounded-lg transition-all duration-200 font-medium hover:bg-[var(--hover)] hover:text-[var(--accent)]"
+                onClick={closeMenu}
+              >
+                Home
+              </a>
+              <a
+                href="/about"
+                className="text-lg text-[var(--text)] no-underline p-4 rounded-lg transition-all duration-200 font-medium hover:bg-[var(--hover)] hover:text-[var(--accent)]"
+                onClick={closeMenu}
+              >
                 About
               </a>
-              <a href="#tech" className={styles.menuItem} onClick={closeMenu}>
+              <a
+                href="#tech"
+                className="text-lg text-[var(--text)] no-underline p-4 rounded-lg transition-all duration-200 font-medium hover:bg-[var(--hover)] hover:text-[var(--accent)]"
+                onClick={closeMenu}
+              >
                 Tech Stack
               </a>
               <a
                 href="#projects"
-                className={styles.menuItem}
+                className="text-lg text-[var(--text)] no-underline p-4 rounded-lg transition-all duration-200 font-medium hover:bg-[var(--hover)] hover:text-[var(--accent)]"
                 onClick={closeMenu}
               >
                 Projects
               </a>
 
-              <div className={styles.menuDivider} />
+              <div className="h-px bg-[var(--border)] my-4 w-full" />
 
-              <div className={styles.resumeSection}>
-                <h3 className={styles.resumeTitle}>Resume</h3>
-                <div className={styles.resumeActions}>
+              <div className="px-4 py-2">
+                <h3 className="text-lg text-[var(--text)] mb-4">Resume</h3>
+                <div className="flex gap-4">
                   <button
-                    className={styles.resumeActionBtn}
+                    className="flex flex-col items-center gap-2 p-4 border border-[var(--border)] rounded-lg bg-[var(--bg-secondary)] text-[var(--text)] cursor-pointer transition-all duration-200 flex-1 hover:border-[var(--accent)] hover:text-[var(--accent)]"
                     onClick={handleMobileDownloadClick}
                   >
                     <FaDownload size={20} />
                     <span>Download</span>
                   </button>
                   <button
-                    className={styles.resumeActionBtn}
+                    className="flex flex-col items-center gap-2 p-4 border border-[var(--border)] rounded-lg bg-[var(--bg-secondary)] text-[var(--text)] cursor-pointer transition-all duration-200 flex-1 hover:border-[var(--accent)] hover:text-[var(--accent)]"
                     onClick={handleMobileViewClick}
                   >
                     <FaExternalLinkAlt size={20} />
@@ -188,10 +259,10 @@ const NavbarSection = ({ theme, toggleTheme }) => {
               </div>
             </nav>
             {showDownloadPrompt && (
-              <div className={styles.promptOverlay}>
-                <div className={styles.prompt}>
-                  <p>Download resume?</p>
-                  <div className={styles.promptActions}>
+              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[60]">
+                <div className="bg-[var(--bg)] p-6 rounded-lg text-center w-10/12 max-w-xs">
+                  <p className="mb-6 text-[var(--text)]">Download resume?</p>
+                  <div className="flex justify-center gap-4">
                     <a
                       href="/JacobLeon-Resume.pdf"
                       download
@@ -199,13 +270,13 @@ const NavbarSection = ({ theme, toggleTheme }) => {
                         setShowDownloadPrompt(false);
                         closeMenu();
                       }}
-                      className={styles.promptBtn}
+                      className="px-6 py-2 rounded-lg border border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--text)] cursor-pointer transition-all duration-200 no-underline hover:border-[var(--accent)] hover:text-[var(--accent)]"
                     >
                       Yes
                     </a>
                     <button
                       onClick={() => setShowDownloadPrompt(false)}
-                      className={styles.promptBtn}
+                      className="px-6 py-2 rounded-lg border border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--text)] cursor-pointer transition-all duration-200 hover:border-[var(--accent)] hover:text-[var(--accent)]"
                     >
                       No
                     </button>
@@ -215,10 +286,12 @@ const NavbarSection = ({ theme, toggleTheme }) => {
             )}
 
             {showViewPrompt && (
-              <div className={styles.promptOverlay}>
-                <div className={styles.prompt}>
-                  <p>View resume in new tab?</p>
-                  <div className={styles.promptActions}>
+              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[60]">
+                <div className="bg-[var(--bg)] p-6 rounded-lg text-center w-10/12 max-w-xs">
+                  <p className="mb-6 text-[var(--text)]">
+                    View resume in new tab?
+                  </p>
+                  <div className="flex justify-center gap-4">
                     <a
                       href="/JacobLeon-Resume.pdf"
                       target="_blank"
@@ -227,13 +300,13 @@ const NavbarSection = ({ theme, toggleTheme }) => {
                         setShowViewPrompt(false);
                         closeMenu();
                       }}
-                      className={styles.promptBtn}
+                      className="px-6 py-2 rounded-lg border border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--text)] cursor-pointer transition-all duration-200 no-underline hover:border-[var(--accent)] hover:text-[var(--accent)]"
                     >
                       Yes
                     </a>
                     <button
                       onClick={() => setShowViewPrompt(false)}
-                      className={styles.promptBtn}
+                      className="px-6 py-2 rounded-lg border border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--text)] cursor-pointer transition-all duration-200 hover:border-[var(--accent)] hover:text-[var(--accent)]"
                     >
                       No
                     </button>

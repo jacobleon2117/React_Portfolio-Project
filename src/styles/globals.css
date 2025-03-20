@@ -4,12 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.app {
-  position: relative;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
 :root {
   --light-bg: #ffffff;
   --light-bg-secondary: #f8f9fa;
@@ -70,10 +64,9 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: var(--bg);
   color: var(--text);
-  line-height: 1.5;
+  scroll-behavior: smooth;
   transition: background-color var(--transition-speed) ease-in-out,
               color var(--transition-speed) ease-in-out;
-  scroll-behavior: smooth;
 }
 
 .container {

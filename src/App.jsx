@@ -1,32 +1,32 @@
-import { useState, useEffect } from 'react'
-import NavbarSection from './components/navbar-section/NavbarSection'
-import HeroSection from './components/hero-section/HeroSection'
-import AboutSection from './components/about-section/AboutSection'
-import TechSection from './components/tech-section/TechSection'
-import ProjectSection from './components/project-section/ProjectSection'
-import FooterSection from './components/footer-section/FooterSection'
-import './styles/globals.css'
+import { useState, useEffect } from "react";
+import NavbarSection from "./components/navbar-section/NavbarSection";
+import HeroSection from "./components/hero-section/HeroSection";
+import AboutSection from "./components/about-section/AboutSection";
+import TechSection from "./components/tech-section/TechSection";
+import ProjectSection from "./components/project-section/ProjectSection";
+import FooterSection from "./components/footer-section/FooterSection";
+import "./styles/globals.css";
 
 function App() {
   const [theme, setTheme] = useState(() => {
-    const savedTheme = localStorage.getItem('theme')
-    return savedTheme || 'dark'
-  })
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme || "dark";
+  });
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-    
-    window.updateFavicon?.(theme === 'dark')
-    
-    localStorage.setItem('theme', theme)
-  }, [theme])
+    document.documentElement.setAttribute("data-theme", theme);
+
+    window.updateFavicon?.(theme === "dark");
+
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
-  }
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   return (
-    <div className="app">
+    <div className="relative min-h-screen overflow-x-hidden">
       <NavbarSection theme={theme} toggleTheme={toggleTheme} />
       <main>
         <HeroSection />
@@ -36,7 +36,7 @@ function App() {
       </main>
       <FooterSection />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

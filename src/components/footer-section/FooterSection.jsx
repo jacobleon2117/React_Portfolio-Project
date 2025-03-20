@@ -1,16 +1,15 @@
-import styles from './FooterSection.module.css';
-
 const FooterSection = () => {
   return (
-    <footer className={styles.footer}>
-      <div className={styles.container}>
-        <div className={styles.content}>
-          <div className={styles.socialLinks}>
+    <footer className="bg-[var(--card)] py-8">
+      <div className="max-w-7xl mx-auto px-8">
+        <div className="flex flex-col items-center gap-8">
+          <div className="flex gap-8 justify-center">
             <a
               href="https://github.com/jacobleon2117"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
+              className="text-[var(--secondary)] transition-colors duration-200 hover:text-[var(--accent)]"
             >
               <svg
                 stroke="currentColor"
@@ -29,6 +28,7 @@ const FooterSection = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
+              className="text-[var(--secondary)] transition-colors duration-200 hover:text-[var(--accent)]"
             >
               <svg
                 stroke="currentColor"
@@ -45,6 +45,7 @@ const FooterSection = () => {
             <a
               href="mailto:jacobleon2117@gmail.com"
               aria-label="Email"
+              className="text-[var(--secondary)] transition-colors duration-200 hover:text-[var(--accent)]"
             >
               <svg
                 stroke="currentColor"
@@ -59,7 +60,7 @@ const FooterSection = () => {
               </svg>
             </a>
           </div>
-          <div className={styles.footerBottom}>
+          <div className="text-center text-[var(--secondary)] text-sm border-t border-[var(--hover)] pt-8 w-full">
             <p>© {new Date().getFullYear()} Jacob Leon</p>
           </div>
         </div>

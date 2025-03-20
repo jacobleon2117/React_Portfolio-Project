@@ -2,44 +2,71 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon-light.svg" id="favicon" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/favicon-light.svg"
+      id="favicon"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Jacob Leon - Full Stack Developer Portfolio showcasing web development projects and technical skills" />
-    <meta name="keywords" content="Jacob Leon, Web Developer, React Developer, Full Stack Developer, Portfolio" />
+    <meta
+      name="description"
+      content="Jacob Leon - Full Stack Developer Portfolio showcasing web development projects and technical skills"
+    />
+    <meta
+      name="keywords"
+      content="Jacob Leon, Web Developer, React Developer, Full Stack Developer, Portfolio"
+    />
     <meta name="author" content="Jacob Leon" />
-    
-    <!-- Open Graph / Facebook -->
+
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://jacobleon.netlify.app/" />
     <meta property="og:title" content="Jacob Leon - Portfolio" />
-    <meta property="og:description" content="Full Stack Developer Portfolio showcasing web development projects and technical skills" />
+    <meta
+      property="og:description"
+      content="Full Stack Developer Portfolio showcasing web development projects and technical skills"
+    />
     <meta property="og:image" content="https://jacobleon.netlify.app/" />
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://jacobleon.netlify.app/" />
     <meta name="twitter:title" content="Jacob Leon - Portfolio" />
-    <meta name="twitter:description" content="Full Stack Developer Portfolio showcasing web development projects and technical skills" />
+    <meta
+      name="twitter:description"
+      content="Full Stack Developer Portfolio showcasing web development projects and technical skills"
+    />
     <meta name="twitter:image" content="https://yourdomain.com/thumbnail.png" />
-    
-    <!-- Theme Color for browsers -->
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <meta
+      name="theme-color"
+      content="#000000"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Jacob Leon - Portfolio</title>
     <script>
       window.updateFavicon = (isDark) => {
-        const favicon = document.getElementById('favicon');
+        const favicon = document.getElementById("favicon");
         if (favicon) {
-          favicon.href = isDark ? '/favicon-dark.svg' : '/favicon-light.svg';
+          favicon.href = isDark ? "/favicon-dark.svg" : "/favicon-light.svg";
         }
       };
 
-      const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const darkModeMediaQuery = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      );
       window.updateFavicon(darkModeMediaQuery.matches);
-      
-      darkModeMediaQuery.addEventListener('change', (e) => {
+
+      darkModeMediaQuery.addEventListener("change", (e) => {
         window.updateFavicon(e.matches);
       });
     </script>
