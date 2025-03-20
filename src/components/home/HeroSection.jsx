@@ -1,6 +1,6 @@
 import { MapPin } from "lucide-react";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
-import Particles from "../Particles";
+import Particles from "../common/Particles";
 
 const HeroSection = () => {
   return (

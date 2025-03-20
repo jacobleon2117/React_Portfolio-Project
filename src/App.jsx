@@ -1,41 +1,31 @@
-import { useState, useEffect } from "react";
-import NavbarSection from "./components/navbar-section/NavbarSection";
-import HeroSection from "./components/hero-section/HeroSection";
-import AboutSection from "./components/about-section/AboutSection";
-import TechSection from "./components/tech-section/TechSection";
-import ProjectSection from "./components/project-section/ProjectSection";
-import FooterSection from "./components/footer-section/FooterSection";
+import { lazy, Suspense } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "./context/ThemeContext";
 import "./styles/globals.css";
 
+const HomePage = lazy(() => import("./pages/HomePage"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
+
+const Loading = () => (
+  <div className="h-screen flex items-center justify-center bg-[var(--bg)]">
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[var(--accent)]"></div>
+  </div>
+);
+
 function App() {
-  const [theme, setTheme] = useState(() => {
-    const savedTheme = localStorage.getItem("theme");
-    return savedTheme || "dark";
-  });
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-
-    window.updateFavicon?.(theme === "dark");
-
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
-
   return (
-    <div className="relative min-h-screen overflow-x-hidden">
-      <NavbarSection theme={theme} toggleTheme={toggleTheme} />
-      <main>
-        <HeroSection />
-        <AboutSection />
-        <TechSection />
-        <ProjectSection />
-      </main>
-      <FooterSection />
-    </div>
+    <ThemeProvider>
+      <BrowserRouter>
+        <Suspense fallback={<Loading />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

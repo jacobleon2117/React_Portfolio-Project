@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "old-folders/hero-section"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

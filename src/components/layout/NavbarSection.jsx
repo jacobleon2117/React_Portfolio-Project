@@ -35,7 +35,6 @@ const NavbarSection = ({ theme, toggleTheme }) => {
 
     window.addEventListener("scroll", handleScroll);
 
-    // Close dropdown when clicking outside
     const handleClickOutside = (e) => {
       const resumeButton = document.getElementById("resume-button");
       const resumeDropdown = document.getElementById("resume-dropdown");
