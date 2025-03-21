@@ -2,6 +2,7 @@ import PageLayout from "../components/layout/PageLayout";
 import HeroSection from "../components/home/HeroSection";
 import AboutSection from "../components/home/AboutSection";
 import ProjectSection from "../components/home/ProjectSection";
+import EasterEggSection from "../components/visitors/EasterEggSection";
 
 const HomePage = () => {
   return (
@@ -10,6 +11,7 @@ const HomePage = () => {
         <HeroSection />
         <AboutSection />
         <ProjectSection />
+        <EasterEggSection />
       </div>
     </PageLayout>
   );

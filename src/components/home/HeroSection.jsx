@@ -11,9 +11,10 @@ const HeroSection = () => {
         quantity={200}
         size={0.4}
         colors={["#3b82f6", "#f8fafc", "#f1f5f9"]}
-        fadeToBottom={true}
+        fadeToBottom={false}
       />
-      <div className="w-full max-w-5xl mx-auto px-8 relative z-10">
+
+      <div className="max-w-5xl w-full mx-auto px-8 relative z-10">
         <div className="flex flex-col md:flex-row items-start justify-center gap-8">
           <div className="w-40 h-40 rounded-full overflow-hidden border-2 border-[var(--accent)] flex-shrink-0">
             <img
@@ -69,6 +70,7 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
+
         <div className="w-full mt-12">
           <TechIcons />
         </div>

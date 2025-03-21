@@ -100,82 +100,81 @@ const NavbarSection = ({ theme, toggleTheme }) => {
       }`}
     >
       <nav className={`h-[var(--navbar-height)] transition-all duration-300`}>
-        <div className="container h-full relative z-50">
-          <div className="w-full h-full hidden md:block">
-            <div className="max-w-5xl h-full mx-auto px-8 flex items-center justify-between">
-              <Link
-                to="/"
-                className="flex items-center justify-center font-bold text-[var(--accent)] transition-colors duration-200 hover:text-[var(--text)]"
-                aria-label="Home"
+        <div className="max-w-5xl mx-auto px-8 h-full relative z-50">
+          <div className="w-full h-full hidden md:flex items-center justify-between">
+            <Link
+              to="/"
+              className="flex items-center justify-center font-bold text-[var(--accent)] transition-colors duration-200 hover:text-[var(--text)]"
+              aria-label="Home"
+            >
+              <div className="w-[60px] text-center">
+                <LogoTypingAnimation />
+              </div>
+            </Link>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={handleThemeToggle}
+                className="bg-transparent border-none p-2 rounded-full flex items-center justify-center transition-all duration-200"
+                aria-label="Toggle theme"
               >
-                <div className="w-[60px] text-center">
-                  <LogoTypingAnimation />
-                </div>
-              </Link>
-              <div className="flex items-center gap-4">
-                <button
-                  onClick={handleThemeToggle}
-                  className="bg-transparent border-none p-2 rounded-full flex items-center justify-center transition-all duration-200"
-                  aria-label="Toggle theme"
-                >
-                  {theme === "dark" ? (
-                    <div className="p-2 rounded-full hover:bg-yellow-400/20">
-                      <FiSun size={20} className="text-yellow-400" />
-                    </div>
-                  ) : (
-                    <div className="p-2 rounded-full hover:bg-cyan-800/20">
-                      <FiMoon size={20} className="text-cyan-800" />
-                    </div>
-                  )}
-                </button>
-                <div className="relative">
-                  <button
-                    id="resume-button"
-                    onClick={toggleResumeDropdown}
-                    className="flex items-center gap-2 px-4 py-2 text-[var(--text)] font-medium rounded-lg transition-all duration-200 border border-[var(--border)] bg-[var(--bg-secondary)] cursor-pointer hover:bg-[var(--accent)] hover:text-white hover:border-[var(--accent)]"
-                    aria-expanded={isResumeDropdownOpen}
-                    aria-haspopup="true"
-                  >
-                    Resume
-                    <FaChevronDown
-                      size={10}
-                      className={`transition-transform duration-200 ${
-                        isResumeDropdownOpen ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
-
-                  <div
-                    id="resume-dropdown"
-                    className={`absolute top-full right-0 mt-2 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg p-2 min-w-48 shadow-lg transition-all duration-200 z-50 ${
-                      isResumeDropdownOpen
-                        ? "opacity-100 visible"
-                        : "opacity-0 invisible pointer-events-none"
-                    }`}
-                  >
-                    <a
-                      href="/JacobLeon-Resume.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 p-3 text-[var(--text)] no-underline transition-all duration-200 rounded-lg text-sm hover:bg-[var(--hover)] hover:text-[var(--accent)]"
-                    >
-                      <FaExternalLinkAlt size={14} />
-                      View in New Tab
-                    </a>
-                    <a
-                      href="/JacobLeon-Resume.pdf"
-                      download
-                      className="flex items-center gap-2 p-3 text-[var(--text)] no-underline transition-all duration-200 rounded-lg text-sm hover:bg-[var(--hover)] hover:text-[var(--accent)]"
-                    >
-                      <FaDownload size={14} />
-                      Download PDF
-                    </a>
+                {theme === "dark" ? (
+                  <div className="p-2 rounded-full hover:bg-yellow-400/20">
+                    <FiSun size={20} className="text-yellow-400" />
                   </div>
+                ) : (
+                  <div className="p-2 rounded-full hover:bg-cyan-800/20">
+                    <FiMoon size={20} className="text-cyan-800" />
+                  </div>
+                )}
+              </button>
+              <div className="relative">
+                <button
+                  id="resume-button"
+                  onClick={toggleResumeDropdown}
+                  className="flex items-center gap-2 px-4 py-2 text-[var(--text)] font-medium rounded-lg transition-all duration-200 border border-[var(--border)] bg-[var(--bg-secondary)] cursor-pointer hover:bg-[var(--accent)] hover:text-white hover:border-[var(--accent)]"
+                  aria-expanded={isResumeDropdownOpen}
+                  aria-haspopup="true"
+                >
+                  Resume
+                  <FaChevronDown
+                    size={10}
+                    className={`transition-transform duration-200 ${
+                      isResumeDropdownOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                <div
+                  id="resume-dropdown"
+                  className={`absolute top-full right-0 mt-2 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg p-2 min-w-48 shadow-lg transition-all duration-200 z-50 ${
+                    isResumeDropdownOpen
+                      ? "opacity-100 visible"
+                      : "opacity-0 invisible pointer-events-none"
+                  }`}
+                >
+                  <a
+                    href="/JacobLeon-Resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 p-3 text-[var(--text)] no-underline transition-all duration-200 rounded-lg text-sm hover:bg-[var(--hover)] hover:text-[var(--accent)]"
+                  >
+                    <FaExternalLinkAlt size={14} />
+                    View in New Tab
+                  </a>
+                  <a
+                    href="/JacobLeon-Resume.pdf"
+                    download
+                    className="flex items-center gap-2 p-3 text-[var(--text)] no-underline transition-all duration-200 rounded-lg text-sm hover:bg-[var(--hover)] hover:text-[var(--accent)]"
+                  >
+                    <FaDownload size={14} />
+                    Download PDF
+                  </a>
                 </div>
               </div>
             </div>
           </div>
-          <div className="w-full h-full md:hidden flex items-center justify-between px-8">
+
+          <div className="w-full h-full md:hidden flex items-center justify-between">
             <Link
               to="/"
               className="flex items-center justify-center font-bold text-[var(--accent)] no-underline transition-colors duration-200 hover:text-[var(--text)]"
@@ -213,6 +212,7 @@ const NavbarSection = ({ theme, toggleTheme }) => {
             </div>
           </div>
         </div>
+
         <div
           className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-all duration-300 ${
             isMenuOpen
@@ -231,7 +231,7 @@ const NavbarSection = ({ theme, toggleTheme }) => {
             <div className="flex justify-between items-center mb-8">
               <button
                 onClick={closeMenu}
-                className="bg-transparent border-none text-[var(--text)] cursor-pointer p-2 flex items-center justify-center"
+                className="bg-transparent border-none text-[var(--text)] cursor-pointer p-2 flex items-center justify-center transition-all duration-200 hover:text-[var(--accent)]"
                 aria-label="Close menu"
               >
                 <FaTimes size={24} />
@@ -250,8 +250,8 @@ const NavbarSection = ({ theme, toggleTheme }) => {
               ))}
             </nav>
             <div className="mt-6 mb-8 mx-4">
-              <div className="border-2 border-[var(--accent)] rounded-xl p-4">
-                <h3 className="text-lg font-medium text-[var(--accent)] mb-4">
+              <div className="border border-[var(--border)] rounded-lg bg-[var(--bg-secondary)] p-4">
+                <h3 className="text-lg font-medium text-[var(--text)] mb-4">
                   Resume
                 </h3>
                 <div className="flex flex-col gap-3">
@@ -259,7 +259,7 @@ const NavbarSection = ({ theme, toggleTheme }) => {
                     href="/JacobLeon-Resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 py-3 px-4 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg text-[var(--text)] transition-all duration-200 no-underline hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                    className="flex items-center gap-3 py-3 px-4 text-[var(--text)] no-underline transition-all duration-200 rounded-lg text-sm hover:bg-[var(--hover)] hover:text-[var(--accent)]"
                     onClick={closeMenu}
                   >
                     <FaExternalLinkAlt size={16} />
@@ -268,7 +268,7 @@ const NavbarSection = ({ theme, toggleTheme }) => {
                   <a
                     href="/JacobLeon-Resume.pdf"
                     download
-                    className="flex items-center gap-3 py-3 px-4 bg-[var(--accent)] text-white rounded-lg transition-all duration-200 no-underline hover:opacity-90"
+                    className="flex items-center gap-3 py-3 px-4 text-[var(--text)] no-underline transition-all duration-200 rounded-lg text-sm hover:bg-[var(--hover)] hover:text-[var(--accent)]"
                     onClick={closeMenu}
                   >
                     <FaDownload size={16} />
