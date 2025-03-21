@@ -1,21 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 // Expanded basic profanity list - we'll add more through the JSON file
-const BASIC_PROFANITY_LIST = [
-  "badword",
-  "offensive",
-  "inappropriate",
-  "profane",
-  "swear",
-  "ass",
-  "damn",
-  "hell",
-  "crap",
-  "shit",
-  "fuck",
-  "bitch",
-  "bastard",
-];
+const BASIC_PROFANITY_LIST = ["badword", "offensive", "inappropriate"];
 
 const AddVisitorForm = ({ onAddVisitor }) => {
   const [name, setName] = useState("");
