@@ -4,7 +4,6 @@ import FloatingNames from "./FloatingNames";
 import AddVisitorForm from "./AddVisitorForm";
 import { useTheme } from "../../hooks/useTheme";
 
-// Simple storage utilities
 const saveToStorage = (key, value) => {
   try {
     localStorage.setItem(key, JSON.stringify(value));
@@ -35,7 +34,6 @@ const removeFromStorage = (key) => {
   }
 };
 
-// Storage keys
 const STORAGE_KEYS = {
   VISITORS: "portfolio_visitors",
   USER_ID: "portfolio_user_submitted_id",
@@ -50,10 +48,8 @@ const Visitors = () => {
   const { theme } = useTheme();
 
   useEffect(() => {
-    // Load visitors from localStorage
     const storedVisitors = getFromStorage(STORAGE_KEYS.VISITORS, []);
 
-    // Check if the user has already submitted their name
     const myVisitorId = getFromStorage(STORAGE_KEYS.USER_ID, null);
 
     setTimeout(() => {
@@ -62,7 +58,6 @@ const Visitors = () => {
       if (myVisitorId) {
         setHasSubmitted(true);
 
-        // Find the user's name in the visitors list
         const myVisitorInfo = storedVisitors.find(
           (v) => v.id.toString() === myVisitorId.toString()
         );
@@ -76,45 +71,36 @@ const Visitors = () => {
   }, []);
 
   const addVisitor = (name) => {
-    // Create a unique ID for this visitor
     const visitorId = Date.now().toString();
 
-    // Create a new visitor object
     const newVisitor = {
       id: visitorId,
       name: name,
       date: new Date().toISOString().split("T")[0],
     };
 
-    // Update the visitors list
     const updatedVisitors = [...visitors, newVisitor];
     setVisitors(updatedVisitors);
     setMyName(name);
 
-    // Save to localStorage
     saveToStorage(STORAGE_KEYS.VISITORS, updatedVisitors);
 
-    // Mark that this user has submitted their name
     saveToStorage(STORAGE_KEYS.USER_ID, visitorId);
     setHasSubmitted(true);
   };
 
   const removeMyName = () => {
-    // Get the user's ID
     const myId = getFromStorage(STORAGE_KEYS.USER_ID);
 
     if (!myId) return;
 
-    // Filter out the user's name from the visitors list
     const updatedVisitors = visitors.filter(
       (visitor) => visitor.id.toString() !== myId.toString()
     );
     setVisitors(updatedVisitors);
 
-    // Save to localStorage
     saveToStorage(STORAGE_KEYS.VISITORS, updatedVisitors);
 
-    // Remove the user's ID from localStorage
     removeFromStorage(STORAGE_KEYS.USER_ID);
     setHasSubmitted(false);
     setMyName("");
@@ -128,7 +114,6 @@ const Visitors = () => {
     <div className="min-h-screen bg-[var(--bg)] relative overflow-hidden">
       <FloatingNames visitors={visitors} />
 
-      {/* Visitor count and controls in footer */}
       <div className="fixed bottom-0 left-0 right-0 p-4 z-20">
         <div className="max-w-5xl mx-auto flex justify-between items-center">
           <button
@@ -171,12 +156,10 @@ const Visitors = () => {
         </div>
       </div>
 
-      {/* Main content */}
       <div className="flex items-center justify-center min-h-screen">
         {!hasSubmitted && !isLoading && (
           <div className="w-full max-w-md px-4">
             <div className="bg-[var(--bg-secondary)] p-6 rounded-lg border border-[var(--border)] shadow-sm relative">
-              {/* Close button */}
               <button
                 className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full text-[var(--text-secondary)] hover:text-[var(--accent)] hover:bg-[var(--bg)]/50 transition-all duration-200"
                 aria-label="Close"

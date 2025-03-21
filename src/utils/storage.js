@@ -1,5 +1,3 @@
-// src/utils/storage.js
-
 /**
  * Safely saves data to localStorage with error handling
  * @param {string} key - The localStorage key

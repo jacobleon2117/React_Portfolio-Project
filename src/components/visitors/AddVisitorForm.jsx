@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-// Expanded basic profanity list - we'll add more through the JSON file
 const BASIC_PROFANITY_LIST = ["badword", "offensive", "inappropriate"];
 
 const AddVisitorForm = ({ onAddVisitor }) => {
@@ -10,10 +9,7 @@ const AddVisitorForm = ({ onAddVisitor }) => {
   const [profanityList, setProfanityList] = useState(BASIC_PROFANITY_LIST);
   const [isLoadingFilter, setIsLoadingFilter] = useState(true);
 
-  // Load the profanity list from the external file
   useEffect(() => {
-    // Attempt to fetch the profanity list
-    // In production, you'd store this in your public folder
     fetch("/badwords.json")
       .then((response) => {
         if (!response.ok) {
@@ -23,13 +19,11 @@ const AddVisitorForm = ({ onAddVisitor }) => {
       })
       .then((data) => {
         if (data && Array.isArray(data.words)) {
-          // Combine with our basic list
           setProfanityList([...BASIC_PROFANITY_LIST, ...data.words]);
         }
       })
       .catch((error) => {
         console.error("Error loading profanity filter:", error);
-        // Continue with the basic list if we can't load the extended one
       })
       .finally(() => {
         setIsLoadingFilter(false);
@@ -49,22 +43,14 @@ const AddVisitorForm = ({ onAddVisitor }) => {
       return "Name must be 20 characters or less";
     }
 
-    // Check for profanity using our combined list
     const lowerInput = input.toLowerCase();
 
-    // More thorough profanity checking:
-    // 1. Check for exact matches
-    // 2. Check for words within the input (with word boundaries)
-    // 3. Check for words with simple character substitutions
     const hasProfanity = profanityList.some((word) => {
-      // Direct inclusion
       if (lowerInput.includes(word)) return true;
 
-      // Word boundaries for more accurate matching
       const wordRegex = new RegExp(`\\b${word}\\b`, "i");
       if (wordRegex.test(lowerInput)) return true;
 
-      // Check for common character substitutions (e.g., @ for a, 0 for o)
       const normalizedInput = lowerInput
         .replace(/[0]/g, "o")
         .replace(/[1]/g, "i")

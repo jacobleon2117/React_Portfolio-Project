@@ -14,10 +14,8 @@ const FloatingNames = ({ visitors }) => {
     const containerWidth = container.offsetWidth;
     const containerHeight = container.offsetHeight;
 
-    // Get the current user's ID
     const myVisitorId = getFromStorage(STORAGE_KEYS.USER_ID, null);
 
-    // Clear any existing floating names
     floatingNamesRef.current.forEach((name) => {
       if (name.element && name.element.parentNode) {
         name.element.parentNode.removeChild(name.element);
@@ -25,7 +23,6 @@ const FloatingNames = ({ visitors }) => {
     });
     floatingNamesRef.current = [];
 
-    // Create floating name elements for each visitor
     visitors.forEach((visitor) => {
       const isMyName =
         myVisitorId && visitor.id.toString() === myVisitorId.toString();
@@ -34,11 +31,10 @@ const FloatingNames = ({ visitors }) => {
       nameElement.className =
         "absolute pointer-events-none select-none transition-opacity duration-500 opacity-0";
 
-      // Highlight my own name differently
       if (isMyName) {
         nameElement.className += " font-bold";
-        nameElement.style.color = "#60a5fa"; // Always use accent color for my name
-        nameElement.style.fontSize = `${1.2}rem`; // Slightly larger
+        nameElement.style.color = "#60a5fa";
+        nameElement.style.fontSize = `${1.2}rem`;
       } else {
         nameElement.style.color = getRandomColor();
         nameElement.style.fontSize = `${Math.random() * 1 + 0.8}rem`;
@@ -47,11 +43,9 @@ const FloatingNames = ({ visitors }) => {
       nameElement.textContent = visitor.name;
       container.appendChild(nameElement);
 
-      // Position randomly within the container
       const x = Math.random() * containerWidth;
       const y = Math.random() * containerHeight;
 
-      // Random movement speed and direction
       const speedX = (Math.random() - 0.5) * 0.5;
       const speedY = (Math.random() - 0.5) * 0.5;
 
@@ -64,20 +58,17 @@ const FloatingNames = ({ visitors }) => {
       });
     });
 
-    // Fade in the names
     setTimeout(() => {
       floatingNamesRef.current.forEach((name) => {
         name.element.style.opacity = "0.6";
       });
     }, 100);
 
-    // Animation function to move the names
     const animate = () => {
       floatingNamesRef.current.forEach((name) => {
         name.x += name.speedX;
         name.y += name.speedY;
 
-        // Bounce off the edges
         if (
           name.x <= 0 ||
           name.x >= containerWidth - name.element.offsetWidth
@@ -92,7 +83,6 @@ const FloatingNames = ({ visitors }) => {
           name.speedY *= -1;
         }
 
-        // Update position
         name.element.style.transform = `translate(${name.x}px, ${name.y}px)`;
       });
 
@@ -101,7 +91,6 @@ const FloatingNames = ({ visitors }) => {
 
     animate();
 
-    // Cleanup function
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
@@ -115,7 +104,6 @@ const FloatingNames = ({ visitors }) => {
     };
   }, [visitors]);
 
-  // Function to generate random colors for names
   const getRandomColor = () => {
     const colors = [
       "#3b82f6", // blue
