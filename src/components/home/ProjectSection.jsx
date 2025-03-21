@@ -165,7 +165,7 @@ const projects = [
 const ProjectSection = () => {
   return (
     <section id="projects" className="bg-[var(--bg)] py-16 pb-24">
-      <div className="max-w-6xl mx-auto px-4 sm:px-8">
+      <div className="max-w-5xl mx-auto px-8">
         <h2 className="text-3xl font-bold mb-12 text-[var(--text)] text-center">
           Projects
         </h2>
