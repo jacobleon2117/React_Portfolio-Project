@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Particles from "../common/Particles";
 import { getFromStorage, STORAGE_KEYS } from "../../utils/storage";
 
@@ -6,6 +6,9 @@ const FloatingNames = ({ visitors }) => {
   const containerRef = useRef(null);
   const floatingNamesRef = useRef([]);
   const animationFrameRef = useRef(null);
+  const isDragging = useRef(false);
+  const draggedName = useRef(null);
+  const dragOffset = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     if (!containerRef.current || visitors.length === 0) return;
@@ -29,7 +32,7 @@ const FloatingNames = ({ visitors }) => {
 
       const nameElement = document.createElement("div");
       nameElement.className =
-        "absolute pointer-events-none select-none transition-opacity duration-500 opacity-0";
+        "absolute select-none transition-opacity duration-500 opacity-0 cursor-grab active:cursor-grabbing";
 
       if (isMyName) {
         nameElement.className += " font-bold";
@@ -41,22 +44,40 @@ const FloatingNames = ({ visitors }) => {
       }
 
       nameElement.textContent = visitor.name;
+      nameElement.style.userSelect = "none";
+      nameElement.style.pointerEvents = "auto";
+
       container.appendChild(nameElement);
 
-      const x = Math.random() * containerWidth;
-      const y = Math.random() * containerHeight;
+      const x = Math.random() * (containerWidth - 100);
+      const y = Math.random() * (containerHeight - 50);
 
       const speedX = (Math.random() - 0.5) * 0.5;
       const speedY = (Math.random() - 0.5) * 0.5;
 
-      floatingNamesRef.current.push({
+      const nameData = {
         element: nameElement,
         x,
         y,
         speedX,
         speedY,
-      });
+        isDragged: false,
+        originalSpeedX: speedX,
+        originalSpeedY: speedY,
+      };
+
+      floatingNamesRef.current.push(nameData);
+
+      nameElement.addEventListener("mousedown", (e) =>
+        handleMouseDown(e, nameData)
+      );
     });
+
+    const handleMouseMove = (e) => handleGlobalMouseMove(e);
+    const handleMouseUp = () => handleGlobalMouseUp();
+
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
 
     setTimeout(() => {
       floatingNamesRef.current.forEach((name) => {
@@ -66,21 +87,23 @@ const FloatingNames = ({ visitors }) => {
 
     const animate = () => {
       floatingNamesRef.current.forEach((name) => {
-        name.x += name.speedX;
-        name.y += name.speedY;
+        if (!name.isDragged) {
+          name.x += name.speedX;
+          name.y += name.speedY;
 
-        if (
-          name.x <= 0 ||
-          name.x >= containerWidth - name.element.offsetWidth
-        ) {
-          name.speedX *= -1;
-        }
+          if (
+            name.x <= 0 ||
+            name.x >= containerWidth - name.element.offsetWidth
+          ) {
+            name.speedX *= -1;
+          }
 
-        if (
-          name.y <= 0 ||
-          name.y >= containerHeight - name.element.offsetHeight
-        ) {
-          name.speedY *= -1;
+          if (
+            name.y <= 0 ||
+            name.y >= containerHeight - name.element.offsetHeight
+          ) {
+            name.speedY *= -1;
+          }
         }
 
         name.element.style.transform = `translate(${name.x}px, ${name.y}px)`;
@@ -92,6 +115,9 @@ const FloatingNames = ({ visitors }) => {
     animate();
 
     return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
@@ -104,16 +130,73 @@ const FloatingNames = ({ visitors }) => {
     };
   }, [visitors]);
 
+  const handleMouseDown = (e, nameData) => {
+    e.preventDefault();
+    isDragging.current = true;
+    draggedName.current = nameData;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    dragOffset.current = {
+      x: e.clientX - rect.left - nameData.x,
+      y: e.clientY - rect.top - nameData.y,
+    };
+
+    nameData.isDragged = true;
+    nameData.element.style.cursor = "grabbing";
+    nameData.element.style.opacity = "0.9";
+    nameData.element.style.zIndex = "1000";
+
+    nameData.element.style.transform = `translate(${nameData.x}px, ${nameData.y}px) scale(1.1)`;
+  };
+
+  const handleGlobalMouseMove = (e) => {
+    if (!isDragging.current || !draggedName.current || !containerRef.current)
+      return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    const newX = e.clientX - rect.left - dragOffset.current.x;
+    const newY = e.clientY - rect.top - dragOffset.current.y;
+
+    const containerWidth = containerRef.current.offsetWidth;
+    const containerHeight = containerRef.current.offsetHeight;
+
+    draggedName.current.x = Math.max(
+      0,
+      Math.min(newX, containerWidth - draggedName.current.element.offsetWidth)
+    );
+    draggedName.current.y = Math.max(
+      0,
+      Math.min(newY, containerHeight - draggedName.current.element.offsetHeight)
+    );
+  };
+
+  const handleGlobalMouseUp = () => {
+    if (draggedName.current) {
+      draggedName.current.isDragged = false;
+      draggedName.current.element.style.cursor = "grab";
+      draggedName.current.element.style.opacity = "0.6";
+      draggedName.current.element.style.zIndex = "auto";
+
+      draggedName.current.element.style.transform = `translate(${draggedName.current.x}px, ${draggedName.current.y}px) scale(1)`;
+
+      draggedName.current.speedX = (Math.random() - 0.5) * 0.8;
+      draggedName.current.speedY = (Math.random() - 0.5) * 0.8;
+    }
+
+    isDragging.current = false;
+    draggedName.current = null;
+  };
+
   const getRandomColor = () => {
     const colors = [
-      "#3b82f6", // blue
-      "#60a5fa", // light blue
-      "#f59e0b", // amber
-      "#10b981", // emerald
-      "#8b5cf6", // violet
-      "#ec4899", // pink
-      "#f43f5e", // rose
-      "#f97316", // orange
+      "#3b82f6",
+      "#60a5fa",
+      "#f59e0b",
+      "#10b981",
+      "#8b5cf6",
+      "#ec4899",
+      "#f43f5e",
+      "#f97316",
     ];
 
     return colors[Math.floor(Math.random() * colors.length)];
@@ -131,7 +214,7 @@ const FloatingNames = ({ visitors }) => {
       <div
         ref={containerRef}
         className="absolute inset-0 overflow-hidden"
-        aria-hidden="true"
+        style={{ pointerEvents: "none" }}
       />
     </>
   );

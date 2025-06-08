@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaTrash } from "react-icons/fa";
 import FloatingNames from "./FloatingNames";
 import AddVisitorForm from "./AddVisitorForm";
 import { useTheme } from "../../hooks/useTheme";
@@ -49,7 +50,6 @@ const Visitors = () => {
 
   useEffect(() => {
     const storedVisitors = getFromStorage(STORAGE_KEYS.VISITORS, []);
-
     const myVisitorId = getFromStorage(STORAGE_KEYS.USER_ID, null);
 
     setTimeout(() => {
@@ -63,11 +63,14 @@ const Visitors = () => {
         );
         if (myVisitorInfo) {
           setMyName(myVisitorInfo.name);
+        } else {
+          removeFromStorage(STORAGE_KEYS.USER_ID);
+          setHasSubmitted(false);
         }
       }
 
       setIsLoading(false);
-    }, 800);
+    }, 300);
   }, []);
 
   const addVisitor = (name) => {
@@ -84,7 +87,6 @@ const Visitors = () => {
     setMyName(name);
 
     saveToStorage(STORAGE_KEYS.VISITORS, updatedVisitors);
-
     saveToStorage(STORAGE_KEYS.USER_ID, visitorId);
     setHasSubmitted(true);
   };
@@ -100,7 +102,6 @@ const Visitors = () => {
     setVisitors(updatedVisitors);
 
     saveToStorage(STORAGE_KEYS.VISITORS, updatedVisitors);
-
     removeFromStorage(STORAGE_KEYS.USER_ID);
     setHasSubmitted(false);
     setMyName("");
@@ -110,6 +111,8 @@ const Visitors = () => {
     navigate("/");
   };
 
+  const nameCount = visitors.length;
+
   return (
     <div className="min-h-screen bg-[var(--bg)] relative overflow-hidden">
       <FloatingNames visitors={visitors} />
@@ -118,7 +121,7 @@ const Visitors = () => {
         <div className="max-w-5xl mx-auto flex justify-between items-center">
           <button
             onClick={handleBackToPortfolio}
-            className="flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200"
+            className="flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200 group"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -130,6 +133,7 @@ const Visitors = () => {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
+              className="group-hover:-translate-x-1 transition-transform duration-200"
             >
               <path d="M19 12H5M12 19l-7-7 7-7" />
             </svg>
@@ -137,20 +141,28 @@ const Visitors = () => {
           </button>
 
           <div className="flex items-center gap-3">
-            <div className="bg-[var(--bg-secondary)] py-1 px-3 rounded-full border border-[var(--border)]">
-              <span className="text-[var(--text-secondary)] text-sm">
-                {visitors.length}{" "}
-                {visitors.length === 1 ? "visitor" : "visitors"}
+            <div className="bg-[var(--bg-secondary)] py-2 px-4 rounded-full border border-[var(--border)]">
+              <span className="text-[var(--text-secondary)] text-sm font-medium">
+                {nameCount} {nameCount === 1 ? "name" : "names"} on the wall
               </span>
             </div>
 
-            {hasSubmitted && (
-              <button
-                onClick={removeMyName}
-                className="bg-[var(--bg-secondary)] py-1 px-3 rounded-full border border-[var(--border)] text-[var(--text-secondary)] text-sm hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors duration-200"
-              >
-                Remove My Name
-              </button>
+            {hasSubmitted && myName && (
+              <>
+                <div className="bg-[var(--accent)]/10 py-2 px-4 rounded-full border border-[var(--accent)]/30">
+                  <span className="text-[var(--accent)] text-sm font-medium">
+                    {myName}
+                  </span>
+                </div>
+                <button
+                  onClick={removeMyName}
+                  className="flex items-center gap-2 bg-[var(--bg-secondary)] py-2 px-4 rounded-full border-2 border-red-500/30 text-red-500 text-sm hover:border-red-500 hover:bg-red-500/5 transition-all duration-200 group"
+                  title="Remove my name from the wall"
+                >
+                  <FaTrash className="text-xs group-hover:scale-110 transition-transform duration-200" />
+                  Remove My Name
+                </button>
+              </>
             )}
           </div>
         </div>
@@ -158,10 +170,10 @@ const Visitors = () => {
 
       <div className="flex items-center justify-center min-h-screen">
         {!hasSubmitted && !isLoading && (
-          <div className="w-full max-w-md px-4">
-            <div className="bg-[var(--bg-secondary)] p-6 rounded-lg border border-[var(--border)] shadow-sm relative">
+          <div className="w-full max-w-lg px-4">
+            <div className="bg-[var(--bg-secondary)] p-8 rounded-xl border border-[var(--border)] shadow-lg relative backdrop-blur-sm">
               <button
-                className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full text-[var(--text-secondary)] hover:text-[var(--accent)] hover:bg-[var(--bg)]/50 transition-all duration-200"
+                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full text-[var(--text-secondary)] hover:text-[var(--accent)] hover:bg-[var(--bg)]/50 transition-all duration-200"
                 aria-label="Close"
                 onClick={() => setHasSubmitted(true)}
               >
@@ -181,14 +193,29 @@ const Visitors = () => {
                 </svg>
               </button>
 
-              <h1 className="text-3xl font-bold mb-4 text-[var(--text)] text-center">
-                Visitor Wall
-              </h1>
+              <div className="text-center mb-8">
+                <h1 className="text-4xl font-bold mb-4 text-[var(--text)]">
+                  ✨ Visitor Wall
+                </h1>
 
-              <p className="text-[var(--text-secondary)] text-center mb-8">
-                Join the {visitors.length} people who have visited this
-                portfolio. Add your name to see it floating among the stars!
-              </p>
+                <p className="text-[var(--text-secondary)] text-lg leading-relaxed">
+                  {nameCount === 0 ? (
+                    "Be the first to add your name to the wall! Join the constellation of visitors and see your name floating among the stars."
+                  ) : (
+                    <>
+                      Join the{" "}
+                      <span className="font-semibold text-[var(--accent)]">
+                        {nameCount}
+                      </span>{" "}
+                      {nameCount === 1 ? "person" : "people"} who{" "}
+                      {nameCount === 1 ? "has" : "have"} added{" "}
+                      {nameCount === 1 ? "their" : "their"} name
+                      {nameCount === 1 ? "" : "s"} to this wall! Add yours to
+                      see it floating among the stars.
+                    </>
+                  )}
+                </p>
+              </div>
 
               <AddVisitorForm onAddVisitor={addVisitor} />
             </div>
@@ -196,8 +223,9 @@ const Visitors = () => {
         )}
 
         {isLoading && (
-          <div className="flex justify-center items-center">
+          <div className="flex flex-col items-center justify-center gap-4">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[var(--accent)]"></div>
+            <p className="text-[var(--text-secondary)]">Loading the stars...</p>
           </div>
         )}
       </div>

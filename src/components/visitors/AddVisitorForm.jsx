@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-const BASIC_PROFANITY_LIST = ["badword", "offensive", "inappropriate"];
-
 const AddVisitorForm = ({ onAddVisitor }) => {
   const [name, setName] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  const [profanityList, setProfanityList] = useState(BASIC_PROFANITY_LIST);
+  const [profanityList, setProfanityList] = useState([]);
   const [isLoadingFilter, setIsLoadingFilter] = useState(true);
 
   useEffect(() => {
@@ -19,11 +17,12 @@ const AddVisitorForm = ({ onAddVisitor }) => {
       })
       .then((data) => {
         if (data && Array.isArray(data.words)) {
-          setProfanityList([...BASIC_PROFANITY_LIST, ...data.words]);
+          setProfanityList(data.words.map((word) => word.toLowerCase()));
         }
       })
       .catch((error) => {
         console.error("Error loading profanity filter:", error);
+        setProfanityList([]);
       })
       .finally(() => {
         setIsLoadingFilter(false);
@@ -43,28 +42,37 @@ const AddVisitorForm = ({ onAddVisitor }) => {
       return "Name must be 20 characters or less";
     }
 
-    const lowerInput = input.toLowerCase();
+    if (!/[a-zA-Z]/.test(input)) {
+      return "Name must contain at least one letter";
+    }
 
-    const hasProfanity = profanityList.some((word) => {
-      if (lowerInput.includes(word)) return true;
+    if (profanityList.length > 0) {
+      const lowerInput = input.toLowerCase().trim();
 
-      const wordRegex = new RegExp(`\\b${word}\\b`, "i");
-      if (wordRegex.test(lowerInput)) return true;
+      const hasProfanity = profanityList.some((word) => {
+        if (lowerInput.includes(word)) return true;
 
-      const normalizedInput = lowerInput
-        .replace(/[0]/g, "o")
-        .replace(/[1]/g, "i")
-        .replace(/[$]/g, "s")
-        .replace(/[@]/g, "a")
-        .replace(/[4]/g, "a")
-        .replace(/[3]/g, "e")
-        .replace(/[5]/g, "s");
+        if (word.length >= 3) {
+          const wordRegex = new RegExp(`\\b${word}\\b`, "i");
+          if (wordRegex.test(lowerInput)) return true;
+        }
 
-      return normalizedInput.includes(word);
-    });
+        const normalizedInput = lowerInput
+          .replace(/[0]/g, "o")
+          .replace(/[1]/g, "i")
+          .replace(/[3]/g, "e")
+          .replace(/[4]/g, "a")
+          .replace(/[5]/g, "s")
+          .replace(/[7]/g, "t")
+          .replace(/[@]/g, "a")
+          .replace(/[\$]/g, "s");
 
-    if (hasProfanity) {
-      return "Please use appropriate language";
+        return normalizedInput.includes(word);
+      });
+
+      if (hasProfanity) {
+        return "Please use appropriate language for your name";
+      }
     }
 
     return "";
@@ -87,10 +95,10 @@ const AddVisitorForm = ({ onAddVisitor }) => {
 
     setError("");
 
-    onAddVisitor(name);
+    const cleanName = name.trim().replace(/\s+/g, " ");
+    onAddVisitor(cleanName);
 
     setSuccess(true);
-
     setName("");
 
     setTimeout(() => {
@@ -98,13 +106,27 @@ const AddVisitorForm = ({ onAddVisitor }) => {
     }, 3000);
   };
 
+  const handleNameChange = (e) => {
+    const value = e.target.value;
+
+    if (value.length > 30) {
+      return;
+    }
+
+    setName(value);
+
+    if (error) {
+      setError("");
+    }
+  };
+
   return (
-    <div className="space-y-4">
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label
             htmlFor="visitor-name"
-            className="block text-[var(--text)] font-medium mb-2"
+            className="block text-[var(--text)] font-medium mb-3 text-center"
           >
             Your Name
           </label>
@@ -112,32 +134,44 @@ const AddVisitorForm = ({ onAddVisitor }) => {
             id="visitor-name"
             type="text"
             value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-              if (error) {
-                setError("");
-              }
-            }}
+            onChange={handleNameChange}
             placeholder="Enter your name"
-            className="w-full px-4 py-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] text-[var(--text)] placeholder-[var(--text-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent transition-colors duration-200"
+            maxLength={25}
+            className="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--bg)] text-[var(--text)] placeholder-[var(--text-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent transition-colors duration-200 text-center text-lg"
             disabled={isLoadingFilter}
+            autoComplete="off"
+            spellCheck="false"
           />
-          {error && <p className="mt-2 text-[#f43f5e] text-sm">{error}</p>}
+          {error && (
+            <p className="mt-3 text-[#f43f5e] text-sm text-center">{error}</p>
+          )}
+          {name.length > 15 && (
+            <p className="mt-2 text-[var(--text-secondary)] text-xs text-center">
+              {25 - name.length} characters remaining
+            </p>
+          )}
         </div>
 
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col items-center space-y-4">
           <button
             type="submit"
-            className={`px-6 py-2 bg-[var(--accent)] text-white rounded-lg transition-all duration-200 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-opacity-50 ${
+            className={`px-8 py-3 bg-[var(--accent)] text-white rounded-lg transition-all duration-200 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-opacity-50 font-medium text-lg ${
               isLoadingFilter ? "opacity-50 cursor-not-allowed" : ""
             }`}
-            disabled={isLoadingFilter}
+            disabled={isLoadingFilter || !name.trim()}
           >
-            {isLoadingFilter ? "Loading..." : "Add My Name"}
+            {isLoadingFilter ? "Loading..." : "✨ Add My Name to the Stars"}
           </button>
 
           {success && (
-            <p className="text-[#10b981]">Name added successfully!</p>
+            <div className="text-center">
+              <p className="text-[#10b981] text-sm font-medium">
+                🎉 Name added successfully!
+              </p>
+              <p className="text-[var(--text-secondary)] text-xs mt-1">
+                Your name is now floating among the stars!
+              </p>
+            </div>
           )}
         </div>
       </form>
