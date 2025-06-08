@@ -2,8 +2,11 @@ import { Code, Server, Database, Laptop } from "lucide-react";
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-20 bg-[var(--bg)] relative">
-      <div className="max-w-5xl mx-auto px-8">
+    <section
+      id="about"
+      className="py-20 bg-[var(--bg)] relative overflow-x-hidden"
+    >
+      <div className="max-w-5xl mx-auto px-8 overflow-x-hidden">
         <h2 className="text-4xl font-bold mb-16 text-center text-[var(--text)]">
           About Me
         </h2>

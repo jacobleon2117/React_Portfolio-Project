@@ -18,7 +18,7 @@ const AppContent = () => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <>
+    <div className="overflow-x-hidden">
       <ParticleBackground theme={theme} />
       <BrowserRouter>
         <Suspense fallback={<LoadingSpinner />}>
@@ -29,7 +29,7 @@ const AppContent = () => {
           </Routes>
         </Suspense>
       </BrowserRouter>
-    </>
+    </div>
   );
 };
 

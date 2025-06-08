@@ -18,7 +18,6 @@ const NavbarSection = ({ theme, toggleTheme }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isResumeDropdownOpen, setIsResumeDropdownOpen] = useState(false);
 
-  // Updated resume file path - make sure this file exists in your public folder
   const resumePath = "/Jacob_Leon-Resume.pdf";
 
   useEffect(() => {
@@ -88,13 +87,11 @@ const NavbarSection = ({ theme, toggleTheme }) => {
     setIsResumeDropdownOpen(!isResumeDropdownOpen);
   };
 
-  // Function to handle resume viewing
   const handleViewResume = () => {
     window.open(resumePath, "_blank", "noopener,noreferrer");
     setIsResumeDropdownOpen(false);
   };
 
-  // Function to handle resume download
   const handleDownloadResume = () => {
     const link = document.createElement("a");
     link.href = resumePath;

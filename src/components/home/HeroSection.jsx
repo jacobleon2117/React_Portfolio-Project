@@ -5,16 +5,16 @@ import TechIcons from "./TechIcons";
 
 const HeroSection = () => {
   return (
-    <section className="min-h-[calc(100vh-var(--navbar-height))] flex items-center justify-center bg-[var(--bg)] relative overflow-hidden py-12">
+    <section className="min-h-[calc(100vh-var(--navbar-height))] flex items-center justify-center bg-[var(--bg)] relative overflow-hidden py-12 w-full max-w-full">
       <Particles
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 overflow-hidden"
         quantity={200}
         size={0.4}
         colors={["#3b82f6", "#f8fafc", "#f1f5f9"]}
         fadeToBottom={false}
       />
 
-      <div className="max-w-5xl w-full mx-auto px-8 relative z-10">
+      <div className="max-w-5xl w-full mx-auto px-8 relative z-10 overflow-x-hidden">
         <div className="flex flex-col md:flex-row items-start justify-center gap-8">
           <div className="w-40 h-40 rounded-full overflow-hidden border-2 border-[var(--accent)] flex-shrink-0">
             <img
@@ -70,8 +70,7 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-
-        <div className="w-full mt-12">
+        <div className="w-full mt-12 overflow-x-hidden">
           <TechIcons />
         </div>
       </div>

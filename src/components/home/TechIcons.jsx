@@ -96,8 +96,8 @@ const TechIcons = () => {
   const secondRow = technologies.slice(7, 14);
 
   return (
-    <div className="flex flex-col items-center mt-8 mb-12 w-full mx-auto">
-      <div className="grid grid-cols-7 gap-6 max-w-4xl mx-auto mb-6">
+    <div className="flex flex-col items-center mt-8 mb-12 w-full mx-auto overflow-x-hidden">
+      <div className="grid grid-cols-7 gap-6 max-w-4xl mx-auto mb-6 overflow-x-hidden">
         {firstRow.map((tech) => (
           <div
             key={tech.name}
@@ -112,8 +112,7 @@ const TechIcons = () => {
           </div>
         ))}
       </div>
-
-      <div className="grid grid-cols-7 gap-6 max-w-4xl mx-auto">
+      <div className="grid grid-cols-7 gap-6 max-w-4xl mx-auto overflow-x-hidden">
         {secondRow.map((tech) => (
           <div
             key={tech.name}

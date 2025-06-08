@@ -158,17 +158,20 @@ const projects = [
 
 const ProjectSection = () => {
   return (
-    <section id="projects" className="bg-[var(--bg)] py-16 pb-24">
-      <div className="max-w-5xl mx-auto px-8">
+    <section
+      id="projects"
+      className="bg-[var(--bg)] py-16 pb-24 overflow-x-hidden"
+    >
+      <div className="max-w-5xl mx-auto px-8 overflow-x-hidden">
         <h2 className="text-3xl font-bold mb-12 text-[var(--text)] text-center">
           Projects
         </h2>
 
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 overflow-x-hidden">
           {projects.map((project, index) => (
             <div
               key={project.id}
-              className="bg-[var(--bg-secondary)] rounded-lg border border-[var(--border)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent)] hover:shadow-lg"
+              className="bg-[var(--bg-secondary)] rounded-lg border border-[var(--border)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent)] hover:shadow-lg max-w-full"
             >
               <div
                 className={`flex flex-col ${

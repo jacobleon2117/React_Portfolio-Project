@@ -6,7 +6,7 @@ const PageLayout = ({ children }) => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--bg)]">
+    <div className="flex flex-col min-h-screen bg-[var(--bg)] overflow-x-hidden">
       <NavbarSection theme={theme} toggleTheme={toggleTheme} />
       <main className="flex-grow">{children}</main>
       <FooterSection />
