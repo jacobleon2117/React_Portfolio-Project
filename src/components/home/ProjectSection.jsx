@@ -151,7 +151,8 @@ const projects = [
       "Atlas Cinema Guru is a comprehensive movie database and management platform that allows users to discover, track, and organize their favorite films. Built with modern web technologies, this application provides an intuitive interface for movie enthusiasts to manage their viewing preferences.",
     technologies: ["React"],
     image: "/images/cinema-guru.png",
-    liveUrl: "",
+    liveUrl:
+      "https://atlas-cinema-guru-seven.vercel.app/api/auth/signin?callbackUrl=https%3A%2F%2Fatlas-cinema-guru-seven.vercel.app%2F",
     githubUrl: "https://github.com/jacobleon2117/atlas-cinema-guru",
     hasImage: true,
   },
