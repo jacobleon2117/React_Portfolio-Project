@@ -1,12 +1,7 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-function cn(...inputs) {
-  return twMerge(clsx(inputs));
-}
 
 function hexToRgb(hex) {
   hex = hex.replace("#", "");
@@ -203,7 +198,7 @@ const Particles = ({
 
   return (
     <div
-      className={cn("pointer-events-none absolute inset-0", className)}
+      className={clsx("pointer-events-none absolute inset-0", className)}
       ref={canvasContainerRef}
       aria-hidden="true"
     >

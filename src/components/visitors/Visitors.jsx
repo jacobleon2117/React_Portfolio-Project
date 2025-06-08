@@ -1,44 +1,15 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
 import FloatingNames from "./FloatingNames";
 import AddVisitorForm from "./AddVisitorForm";
 import { useTheme } from "../../hooks/useTheme";
-
-const saveToStorage = (key, value) => {
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
-    return true;
-  } catch (error) {
-    console.error(`Error saving to localStorage: ${error}`);
-    return false;
-  }
-};
-
-const getFromStorage = (key, defaultValue = null) => {
-  try {
-    const item = localStorage.getItem(key);
-    return item ? JSON.parse(item) : defaultValue;
-  } catch (error) {
-    console.error(`Error retrieving from localStorage: ${error}`);
-    return defaultValue;
-  }
-};
-
-const removeFromStorage = (key) => {
-  try {
-    localStorage.removeItem(key);
-    return true;
-  } catch (error) {
-    console.error(`Error removing from localStorage: ${error}`);
-    return false;
-  }
-};
-
-const STORAGE_KEYS = {
-  VISITORS: "portfolio_visitors",
-  USER_ID: "portfolio_user_submitted_id",
-};
+import {
+  saveToStorage,
+  getFromStorage,
+  removeFromStorage,
+  STORAGE_KEYS,
+} from "../../utils/storage";
 
 const Visitors = () => {
   const [visitors, setVisitors] = useState([]);

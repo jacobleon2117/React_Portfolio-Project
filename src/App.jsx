@@ -1,4 +1,4 @@
-import { lazy, useContext, useEffect, Suspense } from "react";
+import { lazy, useContext, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider, ThemeContext } from "./context/ThemeContext";
 import ParticleBackground from "./components/common/ParticleBackground";

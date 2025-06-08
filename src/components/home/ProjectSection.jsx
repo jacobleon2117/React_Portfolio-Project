@@ -137,12 +137,12 @@ const projects = [
     id: 4,
     title: "StormNeighbor",
     description:
-      "StormNeighbor is a community-driven severe weather app focused on real-time updates during tornadoes, storms, and other weather threats in a user's immediate area. It’s like Nextdoor but built specifically for weather safety and local storm alerts.",
+      "StormNeighbor is a community-driven severe weather app focused on real-time updates during tornadoes, storms, and other weather threats in a user's immediate area. It's like Nextdoor but built specifically for weather safety and local storm alerts.",
     technologies: ["React"],
-    image: "/images/",
+    image: "/images/placeholder-project.jpg",
     liveUrl: "",
     githubUrl: "https://github.com/jacobleon2117/StormNeighbor",
-    hasImage: true,
+    hasImage: false,
   },
   {
     id: 5,
@@ -183,7 +183,11 @@ const ProjectSection = () => {
                   <img
                     src={project.image}
                     alt={project.title}
+                    loading="lazy"
                     className="w-full h-full object-cover aspect-video md:aspect-auto transition-transform duration-300 group-hover:scale-105"
+                    onError={(e) => {
+                      e.target.src = "/images/placeholder-project.jpg";
+                    }}
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-30 transition-opacity duration-300 z-10"></div>
                 </div>
@@ -217,15 +221,22 @@ const ProjectSection = () => {
                   </div>
 
                   <div className="mt-auto flex gap-3">
-                    <a
-                      href={project.liveUrl}
-                      className="inline-flex items-center justify-center gap-1.5 py-2 px-4 bg-[var(--accent)] text-white rounded-lg text-sm transition-all duration-200 cursor-pointer no-underline hover:opacity-90"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaExternalLinkAlt className="text-sm" />
-                      Live View
-                    </a>
+                    {project.liveUrl ? (
+                      <a
+                        href={project.liveUrl}
+                        className="inline-flex items-center justify-center gap-1.5 py-2 px-4 bg-[var(--accent)] text-white rounded-lg text-sm transition-all duration-200 cursor-pointer no-underline hover:opacity-90"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FaExternalLinkAlt className="text-sm" />
+                        Live View
+                      </a>
+                    ) : (
+                      <div className="inline-flex items-center justify-center gap-1.5 py-2 px-4 bg-gray-400 text-gray-200 rounded-lg text-sm cursor-not-allowed">
+                        <FaExternalLinkAlt className="text-sm" />
+                        Coming Soon
+                      </div>
+                    )}
                     <a
                       href={project.githubUrl}
                       className="inline-flex items-center justify-center gap-1.5 py-2 px-4 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg text-[var(--text)] text-sm transition-all duration-200 cursor-pointer no-underline hover:bg-[var(--hover)] hover:border-[var(--accent)]"

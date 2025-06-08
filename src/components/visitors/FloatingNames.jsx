@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Particles from "../common/Particles";
 import { getFromStorage, STORAGE_KEYS } from "../../utils/storage";
 
