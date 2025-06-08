@@ -146,12 +146,12 @@ const projects = [
   },
   {
     id: 5,
-    title: "Project",
+    title: "Atlas Cinema Guru",
     description: "description",
     technologies: ["React"],
     image: "/images/",
     liveUrl: "",
-    githubUrl: "",
+    githubUrl: "https://github.com/jacobleon2117/atlas-cinema-guru",
     hasImage: true,
   },
 ];
