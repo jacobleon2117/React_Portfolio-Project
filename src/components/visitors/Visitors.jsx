@@ -4,6 +4,7 @@ import { FaTrash } from "react-icons/fa";
 import FloatingNames from "./FloatingNames";
 import AddVisitorForm from "./AddVisitorForm";
 import { useTheme } from "../../hooks/useTheme";
+import { getDeviceIdentifier } from "../../utils/ipService";
 import {
   saveToStorage,
   getFromStorage,
@@ -16,32 +17,72 @@ const Visitors = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [myName, setMyName] = useState("");
+  const [deviceId, setDeviceId] = useState("");
   const navigate = useNavigate();
   const { theme } = useTheme();
 
   useEffect(() => {
-    const storedVisitors = getFromStorage(STORAGE_KEYS.VISITORS, []);
-    const myVisitorId = getFromStorage(STORAGE_KEYS.USER_ID, null);
+    const initializeVisitors = async () => {
+      try {
+        const currentDeviceId = await getDeviceIdentifier();
+        setDeviceId(currentDeviceId);
 
-    setTimeout(() => {
-      setVisitors(storedVisitors);
+        const storedVisitors = getFromStorage(STORAGE_KEYS.VISITORS, []);
+        const myVisitorId = getFromStorage(STORAGE_KEYS.USER_ID, null);
 
-      if (myVisitorId) {
-        setHasSubmitted(true);
-
-        const myVisitorInfo = storedVisitors.find(
-          (v) => v.id.toString() === myVisitorId.toString()
+        const existingVisitor = storedVisitors.find(
+          (visitor) => visitor.deviceId === currentDeviceId
         );
-        if (myVisitorInfo) {
-          setMyName(myVisitorInfo.name);
-        } else {
-          removeFromStorage(STORAGE_KEYS.USER_ID);
-          setHasSubmitted(false);
-        }
-      }
 
-      setIsLoading(false);
-    }, 300);
+        setTimeout(() => {
+          setVisitors(storedVisitors);
+
+          if (existingVisitor) {
+            setHasSubmitted(true);
+            setMyName(existingVisitor.name);
+            saveToStorage(STORAGE_KEYS.USER_ID, existingVisitor.id);
+          } else if (myVisitorId) {
+            const myVisitorInfo = storedVisitors.find(
+              (v) => v.id.toString() === myVisitorId.toString()
+            );
+            if (myVisitorInfo) {
+              setHasSubmitted(true);
+              setMyName(myVisitorInfo.name);
+            } else {
+              removeFromStorage(STORAGE_KEYS.USER_ID);
+              setHasSubmitted(false);
+            }
+          }
+
+          setIsLoading(false);
+        }, 300);
+      } catch (error) {
+        console.error("Error initializing visitors:", error);
+        const storedVisitors = getFromStorage(STORAGE_KEYS.VISITORS, []);
+        const myVisitorId = getFromStorage(STORAGE_KEYS.USER_ID, null);
+
+        setTimeout(() => {
+          setVisitors(storedVisitors);
+
+          if (myVisitorId) {
+            setHasSubmitted(true);
+            const myVisitorInfo = storedVisitors.find(
+              (v) => v.id.toString() === myVisitorId.toString()
+            );
+            if (myVisitorInfo) {
+              setMyName(myVisitorInfo.name);
+            } else {
+              removeFromStorage(STORAGE_KEYS.USER_ID);
+              setHasSubmitted(false);
+            }
+          }
+
+          setIsLoading(false);
+        }, 300);
+      }
+    };
+
+    initializeVisitors();
   }, []);
 
   const addVisitor = (name) => {
@@ -51,6 +92,7 @@ const Visitors = () => {
       id: visitorId,
       name: name,
       date: new Date().toISOString().split("T")[0],
+      deviceId: deviceId,
     };
 
     const updatedVisitors = [...visitors, newVisitor];
