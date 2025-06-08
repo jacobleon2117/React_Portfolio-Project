@@ -42,7 +42,7 @@ const technologies = [
   {
     name: "Express.js",
     icon: <SiExpress />,
-    color: "#4A4A4A",
+    color: "#68CC68",
   },
   {
     name: "HTML",

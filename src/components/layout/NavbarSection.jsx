@@ -18,6 +18,9 @@ const NavbarSection = ({ theme, toggleTheme }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isResumeDropdownOpen, setIsResumeDropdownOpen] = useState(false);
 
+  // Updated resume file path - make sure this file exists in your public folder
+  const resumePath = "/Jacob_Leon-Resume.pdf";
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
@@ -83,6 +86,23 @@ const NavbarSection = ({ theme, toggleTheme }) => {
 
   const toggleResumeDropdown = () => {
     setIsResumeDropdownOpen(!isResumeDropdownOpen);
+  };
+
+  // Function to handle resume viewing
+  const handleViewResume = () => {
+    window.open(resumePath, "_blank", "noopener,noreferrer");
+    setIsResumeDropdownOpen(false);
+  };
+
+  // Function to handle resume download
+  const handleDownloadResume = () => {
+    const link = document.createElement("a");
+    link.href = resumePath;
+    link.download = "Jacob_Leon-Resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setIsResumeDropdownOpen(false);
   };
 
   const navItems = [
@@ -152,23 +172,20 @@ const NavbarSection = ({ theme, toggleTheme }) => {
                       : "opacity-0 invisible pointer-events-none"
                   }`}
                 >
-                  <a
-                    href="/JacobLeon-Resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 p-3 text-[var(--text)] no-underline transition-all duration-200 rounded-lg text-sm hover:bg-[var(--hover)] hover:text-[var(--accent)]"
+                  <button
+                    onClick={handleViewResume}
+                    className="flex items-center gap-2 p-3 text-[var(--text)] bg-transparent border-none cursor-pointer transition-all duration-200 rounded-lg text-sm w-full text-left hover:bg-[var(--hover)] hover:text-[var(--accent)]"
                   >
                     <FaExternalLinkAlt size={14} />
                     View in New Tab
-                  </a>
-                  <a
-                    href="/JacobLeon-Resume.pdf"
-                    download
-                    className="flex items-center gap-2 p-3 text-[var(--text)] no-underline transition-all duration-200 rounded-lg text-sm hover:bg-[var(--hover)] hover:text-[var(--accent)]"
+                  </button>
+                  <button
+                    onClick={handleDownloadResume}
+                    className="flex items-center gap-2 p-3 text-[var(--text)] bg-transparent border-none cursor-pointer transition-all duration-200 rounded-lg text-sm w-full text-left hover:bg-[var(--hover)] hover:text-[var(--accent)]"
                   >
                     <FaDownload size={14} />
                     Download PDF
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -255,25 +272,26 @@ const NavbarSection = ({ theme, toggleTheme }) => {
                   Resume
                 </h3>
                 <div className="flex flex-col gap-3">
-                  <a
-                    href="/JacobLeon-Resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 py-3 px-4 text-[var(--text)] no-underline transition-all duration-200 rounded-lg text-sm hover:bg-[var(--hover)] hover:text-[var(--accent)]"
-                    onClick={closeMenu}
+                  <button
+                    onClick={() => {
+                      handleViewResume();
+                      closeMenu();
+                    }}
+                    className="flex items-center gap-3 py-3 px-4 text-[var(--text)] bg-transparent border-none cursor-pointer transition-all duration-200 rounded-lg text-sm w-full text-left hover:bg-[var(--hover)] hover:text-[var(--accent)]"
                   >
                     <FaExternalLinkAlt size={16} />
                     <span>View Resume in New Tab</span>
-                  </a>
-                  <a
-                    href="/JacobLeon-Resume.pdf"
-                    download
-                    className="flex items-center gap-3 py-3 px-4 text-[var(--text)] no-underline transition-all duration-200 rounded-lg text-sm hover:bg-[var(--hover)] hover:text-[var(--accent)]"
-                    onClick={closeMenu}
+                  </button>
+                  <button
+                    onClick={() => {
+                      handleDownloadResume();
+                      closeMenu();
+                    }}
+                    className="flex items-center gap-3 py-3 px-4 text-[var(--text)] bg-transparent border-none cursor-pointer transition-all duration-200 rounded-lg text-sm w-full text-left hover:bg-[var(--hover)] hover:text-[var(--accent)]"
                   >
                     <FaDownload size={16} />
                     <span>Download Resume PDF</span>
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
