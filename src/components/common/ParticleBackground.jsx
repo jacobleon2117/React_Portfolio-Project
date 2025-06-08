@@ -3,8 +3,8 @@ import Particles from "./Particles";
 const ParticleBackground = ({ theme }) => {
   const particleColors =
     theme === "dark"
-      ? ["#3b82f6", "#f3f4f6", "#f9fafb"]
-      : ["#3b82f6", "#f8fafc", "#f1f5f9"];
+      ? ["#60a5fa", "#e5e7eb", "#ffffff"]
+      : ["#2563eb", "#111827", "#000000"];
 
   return (
     <Particles
