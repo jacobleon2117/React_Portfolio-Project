@@ -5,7 +5,6 @@ import ParticleBackground from "./components/common/ParticleBackground";
 import "./styles/globals.css";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
-const VisitorsPage = lazy(() => import("./pages/VisitorsPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 const LoadingSpinner = () => (
@@ -24,7 +23,6 @@ const AppContent = () => {
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/visitors" element={<VisitorsPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>

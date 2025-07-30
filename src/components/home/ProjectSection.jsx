@@ -138,11 +138,12 @@ const projects = [
     title: "StormNeighbor",
     description:
       "StormNeighbor is a community-driven severe weather app focused on real-time updates during tornadoes, storms, and other weather threats in a user's immediate area. It's like Nextdoor but built specifically for weather safety and local storm alerts.",
-    technologies: ["React"],
+    technologies: ["React", "JavaScript", "Express", "Socket.io", "Supabase"],
     image: "/images/placeholder-project.jpg",
     liveUrl: "",
     githubUrl: "https://github.com/jacobleon2117/StormNeighbor",
     hasImage: false,
+    showComingSoon: true,
   },
   {
     id: 5,
@@ -181,16 +182,31 @@ const ProjectSection = () => {
                 }`}
               >
                 <div className="md:w-3/5 relative overflow-hidden group">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover aspect-video md:aspect-auto transition-transform duration-300 group-hover:scale-105"
-                    onError={(e) => {
-                      e.target.src = "/images/placeholder-project.jpg";
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-30 transition-opacity duration-300 z-10"></div>
+                  {project.showComingSoon ? (
+                    <div className="w-full h-full aspect-video md:aspect-auto bg-[var(--bg-secondary)] border border-[var(--border)] flex items-center justify-center">
+                      <div className="text-center">
+                        <div className="text-xl font-semibold text-[var(--text)] mb-2">
+                          Coming Soon
+                        </div>
+                        <div className="text-sm text-[var(--text-secondary)]">
+                          Project screenshots in development
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover aspect-video md:aspect-auto transition-transform duration-300 group-hover:scale-105"
+                        onError={(e) => {
+                          e.target.src = "/images/placeholder-project.jpg";
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-black bg-opacity-30 transition-opacity duration-300 z-10"></div>
+                    </>
+                  )}
                 </div>
 
                 <div className="md:w-2/5 p-6 flex flex-col">
