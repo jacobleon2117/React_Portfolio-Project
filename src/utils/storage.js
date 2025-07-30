@@ -1,8 +1,8 @@
 /**
  * Safely saves data to localStorage with error handling
- * @param {string} key - The localStorage key
- * @param {any} value - The value to store (will be JSON stringified)
- * @returns {boolean} - Success status
+ * @param {string} key
+ * @param {any} value
+ * @returns {boolean}
  */
 export const saveToStorage = (key, value) => {
   try {
@@ -17,9 +17,9 @@ export const saveToStorage = (key, value) => {
 
 /**
  * Safely retrieves data from localStorage with error handling
- * @param {string} key - The localStorage key
- * @param {any} defaultValue - Default value if key doesn't exist
- * @returns {any} - The retrieved value or defaultValue
+ * @param {string} key
+ * @param {any} defaultValue
+ * @returns {any}
  */
 export const getFromStorage = (key, defaultValue = null) => {
   try {
@@ -33,8 +33,8 @@ export const getFromStorage = (key, defaultValue = null) => {
 
 /**
  * Safely removes an item from localStorage
- * @param {string} key - The localStorage key to remove
- * @returns {boolean} - Success status
+ * @param {string} key
+ * @returns {boolean}
  */
 export const removeFromStorage = (key) => {
   try {
