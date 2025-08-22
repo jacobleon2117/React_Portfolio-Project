@@ -106,6 +106,29 @@ const projects = [
   },
   {
     id: 2,
+    title: "StormNeighbor",
+    description:
+      "StormNeighbor is a community-driven severe weather app focused on real-time updates during tornadoes, storms, and other weather threats in a user's immediate area. It's like Nextdoor but built specifically for weather safety and local storm alerts.",
+    technologies: ["React", "JavaScript", "Express", "Socket.io", "Supabase"],
+    image: "/images/placeholder-project.jpg",
+    liveUrl: "",
+    githubUrl: "https://github.com/jacobleon2117/StormNeighbor",
+    hasImage: false,
+    showComingSoon: true,
+  },
+  {
+    id: 3,
+    title: "3MEALS",
+    description:
+      "A dynamic web application designed to simplify recipe exploration and meal curation. Users can browse an extensive collection of recipes sourced from the Edamam API and save their favorites to a personalized page, enhancing their culinary journey with seamless user experience.",
+    technologies: ["JavaScript", "HTML", "CSS", "Node.js", "Express"],
+    image: "/images/3meals.png",
+    liveUrl: "",
+    githubUrl: "https://github.com/jacobleon2117/3MEALS-recipe-search",
+    hasImage: true,
+  },
+  {
+    id: 4,
     title: "Horizon Mental Health Platform",
     description:
       "A comprehensive mental health support platform featuring therapy sessions, journal entries with mood tracking, appointment scheduling, and real-time communication. Built with modern web technologies to make mental healthcare accessible and personalized for users seeking professional support.",
@@ -121,29 +144,6 @@ const projects = [
     liveUrl: "https://horizonmentalhealth.netlify.app/",
     githubUrl: "https://github.com/jacobleon2117/horizon-mh-app",
     hasImage: true,
-  },
-  {
-    id: 3,
-    title: "3MEALS",
-    description:
-      "A dynamic web application designed to simplify recipe exploration and meal curation. Users can browse an extensive collection of recipes sourced from the Edamam API and save their favorites to a personalized page, enhancing their culinary journey with seamless user experience.",
-    technologies: ["JavaScript", "HTML", "CSS", "Node.js", "Express"],
-    image: "/images/3meals.png",
-    liveUrl: "",
-    githubUrl: "https://github.com/jacobleon2117/3MEALS-recipe-search",
-    hasImage: true,
-  },
-  {
-    id: 4,
-    title: "StormNeighbor",
-    description:
-      "StormNeighbor is a community-driven severe weather app focused on real-time updates during tornadoes, storms, and other weather threats in a user's immediate area. It's like Nextdoor but built specifically for weather safety and local storm alerts.",
-    technologies: ["React", "JavaScript", "Express", "Socket.io", "Supabase"],
-    image: "/images/placeholder-project.jpg",
-    liveUrl: "",
-    githubUrl: "https://github.com/jacobleon2117/StormNeighbor",
-    hasImage: false,
-    showComingSoon: true,
   },
   {
     id: 5,
