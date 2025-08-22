@@ -18,7 +18,7 @@ const NavbarSection = ({ theme, toggleTheme }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isResumeDropdownOpen, setIsResumeDropdownOpen] = useState(false);
 
-  const resumePath = "/Jacob_Leon-Resume.pdf";
+  const resumePath = "/Jacob_Leon-2025.pdf";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -95,7 +95,7 @@ const NavbarSection = ({ theme, toggleTheme }) => {
   const handleDownloadResume = () => {
     const link = document.createElement("a");
     link.href = resumePath;
-    link.download = "Jacob_Leon-Resume.pdf";
+    link.download = "Jacob_Leon-2025.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
