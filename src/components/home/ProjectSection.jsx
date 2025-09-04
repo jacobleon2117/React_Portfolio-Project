@@ -110,10 +110,10 @@ const projects = [
     description:
       "StormNeighbor is a community-driven severe weather app focused on real-time updates during tornadoes, storms, and other weather threats in a user's immediate area. It's like Nextdoor but built specifically for weather safety and local storm alerts.",
     technologies: ["React", "JavaScript", "Express", "Socket.io", "Supabase"],
-    image: "/images/placeholder-project.jpg",
+    image: "/images/stormneighbor.png",
     liveUrl: "",
     githubUrl: "https://github.com/jacobleon2117/StormNeighbor",
-    hasImage: false,
+    hasImage: true,
     showComingSoon: true,
   },
   {
