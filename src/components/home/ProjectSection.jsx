@@ -174,7 +174,9 @@ const ProjectSection = () => {
           {projects.map((project, index) => (
             <div
               key={project.id}
-              className="bg-[var(--bg-secondary)] rounded-lg border border-[var(--border)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent)] hover:shadow-lg max-w-full"
+              className={`bg-[var(--bg-secondary)] rounded-lg border border-[var(--border)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent)] hover:shadow-lg max-w-full ${
+                index === 0 ? "mt-2" : ""
+              }`}
             >
               <div
                 className={`flex flex-col ${
