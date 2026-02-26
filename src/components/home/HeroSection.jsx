@@ -32,9 +32,6 @@ const HeroSection = () => {
               <h2 className="text-2xl md:text-3xl text-[var(--accent)] font-semibold mb-1">
                 Full-stack Developer
               </h2>
-              <p className="text-lg text-[var(--text-secondary)]">
-                Front-end and Back-end development
-              </p>
             </div>
 
             <div className="flex flex-wrap items-center gap-8">
