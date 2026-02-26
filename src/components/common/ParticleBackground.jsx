@@ -11,10 +11,6 @@ const ParticleBackground = ({ theme }) => {
       colors={particleColors}
       quantity={80}
       size={0.5}
-      cursorInteraction="repel"
-      interactionStrength={0.2}
-      ease={150}
-      disableOnMobile={false}
     />
   );
 };

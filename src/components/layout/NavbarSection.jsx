@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import {
   FaBars,
@@ -298,11 +297,6 @@ const NavbarSection = ({ theme, toggleTheme }) => {
       </nav>
     </header>
   );
-};
-
-NavbarSection.propTypes = {
-  theme: PropTypes.oneOf(["light", "dark"]).isRequired,
-  toggleTheme: PropTypes.func.isRequired,
 };
 
 export default NavbarSection;
