@@ -48,7 +48,12 @@
   --hover: var(--dark-hover);
 }
 
-html, body {
+html {
+  overscroll-behavior: none;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
   overscroll-behavior: none;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
