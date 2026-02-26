@@ -37,7 +37,7 @@ const HeroSection = () => {
             <div className="flex flex-wrap items-center gap-8">
               <div className="flex items-center gap-2 text-[var(--text-secondary)] text-lg">
                 <MapPin size={18} />
-                <span>Owasso, Oklahoma</span>
+                <span>Skiatook, Oklahoma</span>
               </div>
 
               <div className="flex gap-6">
